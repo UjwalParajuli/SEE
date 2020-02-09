@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SEE</string>
+    <string name="underline"><u>Skip</u></string>
+    <string name="login_text">Not Signed Up Yet? <u>Sign Up</u></string>
+    <string name="login_text_1">Already Signed Up? <u>Login</u></string>
+</resources>
