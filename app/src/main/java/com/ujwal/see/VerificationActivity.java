@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -30,6 +31,7 @@ public class VerificationActivity extends AppCompatActivity {
     Button button_verify;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    ProgressBar progress_bar_verification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class VerificationActivity extends AppCompatActivity {
 
         edit_text_code = (EditText) findViewById(R.id.edit_txt_code);
         button_verify = (Button) findViewById(R.id.btn_verify);
+        progress_bar_verification = (ProgressBar) findViewById(R.id.progress_bar_verification);
 
         sharedPreferences = getSharedPreferences("RegisterForm",MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -54,21 +57,26 @@ public class VerificationActivity extends AppCompatActivity {
             error = true;
         }
         if (error == false){
+            progress_bar_verification.setVisibility(View.VISIBLE);
             final RequestQueue requestQueue = Volley.newRequestQueue(VerificationActivity.this);
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.trim().equals("success")){
+                        progress_bar_verification.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(), "Successfully Verified. Please log in to your account", Toast.LENGTH_SHORT).show();
                         editor.clear();
                         editor.apply();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                     else if (response.trim().equals("error")) {
+                        progress_bar_verification.setVisibility(View.GONE);
                         edit_text_code.setError("Incorrect Code");
                     }
                     else if (response.trim().equals("dbError")){
+                        progress_bar_verification.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(), "Database Error", Toast.LENGTH_SHORT).show();
                     }
 
@@ -77,16 +85,22 @@ public class VerificationActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     if (error instanceof NetworkError) {
+                        progress_bar_verification.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof ServerError) {
+                        progress_bar_verification.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof AuthFailureError) {
+                        progress_bar_verification.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof ParseError) {
+                        progress_bar_verification.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof NoConnectionError) {
+                        progress_bar_verification.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof TimeoutError) {
+                        progress_bar_verification.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
                     }
                 }

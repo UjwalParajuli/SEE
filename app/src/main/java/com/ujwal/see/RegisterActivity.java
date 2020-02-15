@@ -2,6 +2,7 @@ package com.ujwal.see;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText edit_text_name, edit_text_email_1, edit_text_password_1, edit_text_confirm_password, edit_text_phone, edit_text_address;
     Button button_sign_up_1;
     TextView text_view_login;
+    ProgressBar progress_bar_register;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editorPreferences;
 
@@ -67,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
         edit_text_address = (EditText) findViewById(R.id.edit_txt_address);
         button_sign_up_1 = (Button) findViewById(R.id.btn_sign_up_1);
         text_view_login = (TextView) findViewById(R.id.txt_login);
+        progress_bar_register = (ProgressBar)findViewById(R.id.progress_bar_register);
 
         edit_text_name.addTextChangedListener(nameTextWatcher);
         edit_text_email_1.addTextChangedListener(emailTextWatcher);
@@ -280,11 +284,13 @@ public class RegisterActivity extends AppCompatActivity {
             error = true;
         }
         if (error == false){
+            progress_bar_register.setVisibility(View.VISIBLE);
             final RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.trim().equals("success")){
+                        progress_bar_register.setVisibility(View.GONE);
                         editorPreferences.putString("full_name", full_name);
                         editorPreferences.putString("email", email);
                         editorPreferences.putString("password", password);
@@ -297,9 +303,11 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                     else if (response.trim().equals("error")) {
+                        progress_bar_register.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(), "Email Already Exists", Toast.LENGTH_SHORT).show();
                     }
                     else if (response.trim().equals("dbError")){
+                        progress_bar_register.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(), "Database Error", Toast.LENGTH_SHORT).show();
                     }
 
@@ -308,16 +316,22 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     if (error instanceof NetworkError) {
+                        progress_bar_register.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof ServerError) {
+                        progress_bar_register.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof AuthFailureError) {
+                        progress_bar_register.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof ParseError) {
+                        progress_bar_register.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof NoConnectionError) {
+                        progress_bar_register.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof TimeoutError) {
+                        progress_bar_register.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
                     }
                 }
