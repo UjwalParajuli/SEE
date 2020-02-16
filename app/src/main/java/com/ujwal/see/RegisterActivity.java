@@ -304,7 +304,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     else if (response.trim().equals("error")) {
                         progress_bar_register.setVisibility(View.GONE);
-                        Toast.makeText(getApplicationContext(), "Email Already Exists", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Sorry! Email Already Exists", Toast.LENGTH_SHORT).show();
                     }
                     else if (response.trim().equals("dbError")){
                         progress_bar_register.setVisibility(View.GONE);
