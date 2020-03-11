@@ -118,6 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
 
+                            int id = jsonResponse.getInt("id");
                             String name = jsonResponse.getString("full_name");
                             String email = jsonResponse.getString("email");
                             String address = jsonResponse.getString("address");
@@ -129,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
                             editorPreferences.putString("address", address);
                             editorPreferences.putString("phone", phone);
                             editorPreferences.putString("user_type", user_type);
+                            editorPreferences.putInt("user_id", id);
                             editorPreferences.apply();
 
                             if (check_box_remember_me.isChecked()){

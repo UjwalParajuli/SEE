@@ -23,7 +23,9 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".VerificationActivity" />
         <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".ForgotPassVerificationActivity" />
+        <activity android:name=".ChangePassword"></activity>
     </application>
 
 </manifest>
