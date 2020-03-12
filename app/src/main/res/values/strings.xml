@@ -3,4 +3,17 @@
     <string name="underline"><u>Skip</u></string>
     <string name="login_text">Not Signed Up Yet? <u>Sign Up</u></string>
     <string name="login_text_1">Already Signed Up? <u>Login</u></string>
+
+    <string-array name="categories">
+        <item>Conference</item>
+        <item>Training and Workshop</item>
+        <item>Education</item>
+        <item>Entertainment</item>
+        <item>Photography</item>
+        <item>Social, Culture</item>
+        <item>Sports</item>
+        <item>Seminar, Exhibition</item>
+        <item>Nightlife and Parties</item>
+        <item>Music and Concerts</item>
+    </string-array>
 </resources>
