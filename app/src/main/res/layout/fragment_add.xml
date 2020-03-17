@@ -12,13 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar_homepage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
         <ImageView
             android:id="@+id/img_event"
             android:layout_width="0dp"
@@ -28,11 +21,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:srcCompat="@drawable/add_image" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_asset_3"
+            tools:ignore="VectorDrawableCompat" />
 
         <EditText
             android:id="@+id/edit_txt_event_name"
@@ -234,6 +228,7 @@
                 android:text="Yes"
                 android:textColor="@color/colorBlack"
                 android:textSize="14sp"
+                android:checked="true"
                 app:fontFamily="@font/open_sans_regular" />
 
             <RadioButton
@@ -326,6 +321,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
+
+        <ProgressBar
+            android:id="@+id/progressBarAddEvent"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/edit_txt_start_time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>

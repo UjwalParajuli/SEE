@@ -123,13 +123,13 @@ public class LoginActivity extends AppCompatActivity {
                             String email = jsonResponse.getString("email");
                             String address = jsonResponse.getString("address");
                             String phone = jsonResponse.getString("phone");
-                            String user_type = jsonResponse.getString("user_type_id");
+                            int user_type = jsonResponse.getInt("user_type_id");
 
                             editorPreferences.putString("full_name", name);
                             editorPreferences.putString("email", email);
                             editorPreferences.putString("address", address);
                             editorPreferences.putString("phone", phone);
-                            editorPreferences.putString("user_type", user_type);
+                            editorPreferences.putInt("user_type", user_type);
                             editorPreferences.putInt("user_id", id);
                             editorPreferences.apply();
 

@@ -14,21 +14,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashScreen">
+        <activity android:name=".SplashScreen" android:theme="@style/ProgressBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".VerificationActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".ForgotPassVerificationActivity" />
-        <activity android:name=".ChangePassword"></activity>
+        <activity android:name=".MainActivity" android:theme="@style/HomeTheme" />
+        <activity android:name=".LoginActivity"
+            android:theme="@style/HomeTheme"/>
+        <activity android:name=".RegisterActivity" android:theme="@style/HomeTheme" />
+        <activity android:name=".VerificationActivity" android:theme="@style/HomeTheme" />
+        <activity android:name=".ForgotPasswordActivity" android:theme="@style/HomeTheme" />
+        <activity android:name=".HomeActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ForgotPassVerificationActivity" android:theme="@style/HomeTheme" />
+        <activity android:name=".ChangePassword" android:theme="@style/HomeTheme"></activity>
     </application>
 
 </manifest>

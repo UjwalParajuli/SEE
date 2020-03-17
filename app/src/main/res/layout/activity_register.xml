@@ -196,7 +196,6 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="32dp"
             android:onClick="openLoginPage"
             android:text="@string/login_text_1"
             android:textColor="@color/colorBlack"
@@ -204,8 +203,10 @@
             app:fontFamily="@font/open_sans_regular"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_sign_up_1" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_sign_up_1"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ProgressBar
             android:id="@+id/progress_bar_register"
