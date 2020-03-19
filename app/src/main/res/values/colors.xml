@@ -9,4 +9,8 @@
     <color name="colorText">#B37358</color>
     <color name="colorBlack">#000000</color>
     <color name="borderColor">#C7BABA</color>
+    <color name="rcViewText">#E04C8F</color>
+    <color name="rcViewBackground">#EFF1F3</color>
+    <color name="rcViewText2">#8D949E</color>
+    <color name="cardViewButton">#4B4F56</color>
 </resources>

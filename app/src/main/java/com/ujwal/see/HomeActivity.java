@@ -1,13 +1,12 @@
 package com.ujwal.see;
 
-import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
     BottomNavigationView bottom_navigation_view;
@@ -18,8 +17,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+
         bottom_navigation_view = (BottomNavigationView) findViewById(R.id.bottom_navigation_view);
         bottom_navigation_view.setOnNavigationItemSelectedListener(nav_listener);
+
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
@@ -28,8 +31,20 @@ public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView.OnNavigationItemSelectedListener nav_listener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                public boolean onNavigationItemSelected(@NonNull final MenuItem menuItem) {
                     Fragment selected_fragment = null;
+
+                    getSupportFragmentManager().addOnBackStackChangedListener(
+                            new FragmentManager.OnBackStackChangedListener() {
+                                public void onBackStackChanged() {
+                                    Fragment current = getCurrentFragment();
+                                    if (current instanceof HomeFragment) {
+                                        bottom_navigation_view.getMenu().findItem(R.id.nav_home).setChecked(true);
+                                    } else {
+                                        bottom_navigation_view.getMenu().findItem(R.id.nav_add).setChecked(true);
+                                    }
+                                }
+                            });
 
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
@@ -54,4 +69,13 @@ public class HomeActivity extends AppCompatActivity {
 
                 }
             };
+
+    public Fragment getCurrentFragment() {
+        return this.getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+    }
+
+
+
+
+
 }

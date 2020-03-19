@@ -12,12 +12,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.core.content.ContextCompat;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -117,6 +119,7 @@ public class AddFragment extends Fragment {
         rb_yes = (RadioButton)view.findViewById(R.id.rb_yes);
         rb_no = (RadioButton)view.findViewById(R.id.rb_no);
 
+
         button_create_event = (Button)view.findViewById(R.id.btn_create_event);
 
         category_spinner = (Spinner)view.findViewById(R.id.spinner_category);
@@ -155,6 +158,33 @@ public class AddFragment extends Fragment {
                 requestPermission();
             }
         }
+
+        radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId)
+                {
+                    case R.id.rb_no:
+                        edit_text_cost_per_ticket.setEnabled(false);
+                        edit_text_cost_per_ticket.setInputType(InputType.TYPE_NULL);
+                        edit_text_cost_per_ticket.setFocusableInTouchMode(false);
+
+                        edit_text_total_ticket.setEnabled(false);
+                        edit_text_total_ticket.setInputType(InputType.TYPE_NULL);
+                        edit_text_total_ticket.setFocusableInTouchMode(false);
+                        break;
+                    case R.id.rb_yes:
+                        edit_text_cost_per_ticket.setEnabled(true);
+                        edit_text_cost_per_ticket.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        edit_text_cost_per_ticket.setFocusableInTouchMode(true);
+
+                        edit_text_total_ticket.setEnabled(true);
+                        edit_text_total_ticket.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        edit_text_total_ticket.setFocusableInTouchMode(true);
+                        break;
+                }
+            }
+        });
 
 
 
@@ -367,7 +397,7 @@ public class AddFragment extends Fragment {
     public String getStringImage(Bitmap bitmap){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try{
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
         }catch (Exception ex){
             Toast.makeText(getContext(), "Please Select Image", Toast.LENGTH_SHORT).show();
         }
@@ -449,15 +479,18 @@ public class AddFragment extends Fragment {
             error = true;
         }
 
-        if (cost_per_ticket.isEmpty()){
-            edit_text_cost_per_ticket.setError("Please fill this field");
-            error = true;
+        if (ticket_required == "Yes"){
+            if (cost_per_ticket.isEmpty()){
+                edit_text_cost_per_ticket.setError("Please fill this field");
+                error = true;
+            }
+
+            if (total_tickets.isEmpty()){
+                edit_text_total_ticket.setError("Please fill this field");
+                error = true;
+            }
         }
 
-        if (total_tickets.isEmpty()){
-            edit_text_total_ticket.setError("Please fill this field");
-            error = true;
-        }
 
         if (error == false){
             progress_bar_create_event.setVisibility(View.VISIBLE);
@@ -468,7 +501,11 @@ public class AddFragment extends Fragment {
                     if (response.trim().equals("success")){
                         progress_bar_create_event.setVisibility(View.GONE);
                         Toast.makeText(getContext(), "Successfully Created", Toast.LENGTH_SHORT).show();
-
+                        Fragment homeFragment = new HomeFragment();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.fragment_container, homeFragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
                     }
                     else if (response.trim().equals("error")) {
                         progress_bar_create_event.setVisibility(View.GONE);
@@ -485,7 +522,7 @@ public class AddFragment extends Fragment {
                     }
                     else if (response.trim().equals("error2")){
                         progress_bar_create_event.setVisibility(View.GONE);
-                        Toast.makeText(getContext(), "couldnt upload file", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Could not upload file", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -538,4 +575,6 @@ public class AddFragment extends Fragment {
 
         }
     }
+
+
 }
