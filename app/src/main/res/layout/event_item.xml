@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/todayCard"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                android:background="@color/colorPrimary"
+                android:id="@+id/img_banner"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_banner"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:background="@color/rcViewBackground"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/event_date"
+                    android:layout_marginTop="-6dp"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:textColor="@color/rcViewText"
+                    android:text="FRI, MAR 28 - MAR 30"/>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:id="@+id/event_title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginLeft="0dp"
+                            android:textSize="13sp"
+                            android:textColor="@color/colorBlack"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="Final Year Project Showcase" />
+
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+
+                            <Button
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/button_view"
+                                android:text="View More"
+                                android:textAllCaps="false"
+                                android:background="@drawable/card_view_button"
+                                android:fontFamily="@font/open_sans_bold"
+                                android:textSize="12sp"
+                                android:textColor="@color/cardViewButton"
+                                android:layout_weight="1"
+
+                                />
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/event_venue"
+                        android:layout_marginTop="-28dp"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:textSize="11sp"
+                        android:textColor="@color/rcViewText2"
+                        android:text="Informatics College, Pokhara"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/people_count"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/open_sans_regular"
+                        android:textSize="11sp"
+                        android:textColor="@color/rcViewText2"
+                        android:text="0 people coming"/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

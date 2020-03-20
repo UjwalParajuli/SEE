@@ -80,6 +80,7 @@ public class HomeFragment extends Fragment {
                             jsonResponse = jsonArray.getJSONObject(i);
                             int event_id = jsonResponse.getInt("id");
                             int organizer_id = jsonResponse.getInt("organizer_id");
+                            int total_people = jsonResponse.getInt("total_people");
                             String event_name = jsonResponse.getString("name");
                             String event_city = jsonResponse.getString("city");
                             String venue = jsonResponse.getString("venue");
@@ -90,8 +91,11 @@ public class HomeFragment extends Fragment {
                             String category = jsonResponse.getString("category");
                             String description = jsonResponse.getString("description");
                             String image = jsonResponse.getString("image");
+                            String ticket_required = jsonResponse.getString("ticket_required");
+                            double cost_per_ticket = jsonResponse.getDouble("cost_per_ticket");
+                            int total_tickets = jsonResponse.getInt("total_tickets");
 
-                            EventModel eventModel = new EventModel(event_id, organizer_id, event_name, event_city, venue, start_date, end_date, start_time, end_time, category, description, image);
+                            EventModel eventModel = new EventModel(event_id, organizer_id, total_people, total_tickets, event_name, event_city, venue, start_date, end_date, start_time, end_time, category, description, image, ticket_required, cost_per_ticket);
                             eventModelArrayList.add(eventModel);
 
                         }
