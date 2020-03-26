@@ -79,7 +79,7 @@
                             <Button
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/button_view"
+                                android:id="@+id/btn_view_more"
                                 android:text="View More"
                                 android:textAllCaps="false"
                                 android:background="@drawable/card_view_button"

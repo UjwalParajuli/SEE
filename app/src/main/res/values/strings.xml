@@ -16,4 +16,6 @@
         <item>Nightlife and Parties</item>
         <item>Music and Concerts</item>
     </string-array>
+
+    <item name="item_click_support" type="id" />
 </resources>

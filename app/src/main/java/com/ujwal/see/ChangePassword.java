@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -99,12 +100,15 @@ public class ChangePassword extends AppCompatActivity {
         }
         if (error == false){
             progress_bar_change_password.setVisibility(View.VISIBLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             final RequestQueue requestQueue = Volley.newRequestQueue(ChangePassword.this);
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.trim().equals("success")){
                         progress_bar_change_password.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(), "Password Successfully Updated. Please log in to your account", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
@@ -112,10 +116,12 @@ public class ChangePassword extends AppCompatActivity {
                     }
                     else if (response.trim().equals("error")) {
                         progress_bar_change_password.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(), "Sorry! Email not found", Toast.LENGTH_SHORT).show();
                     }
                     else if (response.trim().equals("dbError")){
                         progress_bar_change_password.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(), "Database Error", Toast.LENGTH_SHORT).show();
                     }
 
@@ -125,21 +131,27 @@ public class ChangePassword extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     if (error instanceof NetworkError) {
                         progress_bar_change_password.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof ServerError) {
                         progress_bar_change_password.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof AuthFailureError) {
                         progress_bar_change_password.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof ParseError) {
                         progress_bar_change_password.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof NoConnectionError) {
                         progress_bar_change_password.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof TimeoutError) {
                         progress_bar_change_password.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
                     }
                 }

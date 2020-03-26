@@ -1,8 +1,10 @@
 package com.ujwal.see;
 
-public class EventModel {
+import java.io.Serializable;
+
+public class EventModel implements Serializable {
     int event_id, organizer_id, total_people, total_tickets;
-    String event_name, city, venue, start_date, end_date, start_time, end_time, event_category, event_description, event_image, ticket_required;
+    String event_name, city, venue, start_date, end_date, start_time, end_time, event_category, event_description, event_image, ticket_required, organizer_name;
     double cost_per_ticket;
 
     public int getEvent_id() {
@@ -133,7 +135,15 @@ public class EventModel {
         this.cost_per_ticket = cost_per_ticket;
     }
 
-    public EventModel(int event_id, int organizer_id, int total_people, int total_tickets, String event_name, String city, String venue, String start_date, String end_date, String start_time, String end_time, String event_category, String event_description, String event_image, String ticket_required, double cost_per_ticket) {
+    public String getOrganizer_name() {
+        return organizer_name;
+    }
+
+    public void setOrganizer_name(String event_image) {
+        this.organizer_name = organizer_name;
+    }
+
+    public EventModel(int event_id, int organizer_id, int total_people, int total_tickets, String event_name, String city, String venue, String start_date, String end_date, String start_time, String end_time, String event_category, String event_description, String event_image, String ticket_required, double cost_per_ticket, String organizer_name) {
         this.event_id = event_id;
         this.organizer_id = organizer_id;
         this.total_people = total_people;
@@ -150,6 +160,7 @@ public class EventModel {
         this.event_image = event_image;
         this.ticket_required = ticket_required;
         this.cost_per_ticket = cost_per_ticket;
+        this.organizer_name = organizer_name;
     }
 }
 

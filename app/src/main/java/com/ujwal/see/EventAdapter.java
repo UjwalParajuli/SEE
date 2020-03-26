@@ -4,10 +4,13 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ import java.util.Date;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
     ArrayList<EventModel> eventArrayList;
     Context context;
+
 
     public EventAdapter(ArrayList<EventModel> eventArrayList, Context context) {
         this.eventArrayList = eventArrayList;
@@ -40,14 +44,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EventAdapter.ViewHolder viewHolder, int i) {
-        EventModel eventModel = eventArrayList.get(i);
+    public void onBindViewHolder(@NonNull EventAdapter.ViewHolder viewHolder, final int i) {
+        final EventModel eventModel = eventArrayList.get(i);
 
         ImageView bannerImage = viewHolder.image_banner;
         TextView dateText = viewHolder.event_date;
         TextView titleText = viewHolder.event_title;
         TextView venueText = viewHolder.event_venue;
         TextView totalPeople = viewHolder.no_of_people;
+        Button btn_view_more = viewHolder.btn_view_more;
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date dateStart = null, dateEnd = null;
@@ -77,6 +82,18 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         totalPeople.setText(String.valueOf(eventModel.getTotal_people()) + " " + "people coming");
         Picasso.get().load(eventModel.event_image).into(bannerImage);
 
+        btn_view_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventModel eventModel1 = eventArrayList.get(i);
+                Intent intent = new Intent(context, EventDetails.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("event_details", eventModel1);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -88,6 +105,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView event_date, event_title, event_venue, no_of_people;
         public ImageView image_banner;
+        public Button btn_view_more;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -97,6 +115,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             event_venue = itemView.findViewById(R.id.event_venue);
             no_of_people = itemView.findViewById(R.id.people_count);
             image_banner = itemView.findViewById(R.id.img_banner);
+            btn_view_more = itemView.findViewById(R.id.btn_view_more);
         }
     }
 

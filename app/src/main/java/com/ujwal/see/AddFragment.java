@@ -25,6 +25,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -134,7 +135,12 @@ public class AddFragment extends Fragment {
         category_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((TextView) view).setTextColor(Color.BLACK);
+                try {
+                    ((TextView) view).setTextColor(Color.BLACK);
+                }catch (Exception ex){
+
+                }
+
             }
 
             @Override
@@ -494,12 +500,15 @@ public class AddFragment extends Fragment {
 
         if (error == false){
             progress_bar_create_event.setVisibility(View.VISIBLE);
+            getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             final RequestQueue requestQueue = Volley.newRequestQueue(getContext());
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.trim().equals("success")){
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(), "Successfully Created", Toast.LENGTH_SHORT).show();
                         Fragment homeFragment = new HomeFragment();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -509,19 +518,23 @@ public class AddFragment extends Fragment {
                     }
                     else if (response.trim().equals("error")) {
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(), "Event Already Created", Toast.LENGTH_SHORT).show();
 
                     }
                     else if (response.trim().equals("ticketError")){
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(), "Error while inserting to Ticket table", Toast.LENGTH_SHORT).show();
                     }
                     else if (response.trim().equals("eventDetailsError")){
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(), "Error while inserting to event_details table", Toast.LENGTH_SHORT).show();
                     }
                     else if (response.trim().equals("error2")){
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(), "Could not upload file", Toast.LENGTH_SHORT).show();
                     }
 
@@ -532,21 +545,27 @@ public class AddFragment extends Fragment {
                 public void onErrorResponse(VolleyError error) {
                     if (error instanceof NetworkError) {
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof ServerError) {
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(),"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof AuthFailureError) {
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof ParseError) {
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(),"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof NoConnectionError) {
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof TimeoutError) {
                         progress_bar_create_event.setVisibility(View.GONE);
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getContext(),"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
                     }
                 }

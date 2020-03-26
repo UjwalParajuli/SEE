@@ -13,4 +13,6 @@
     <color name="rcViewBackground">#EFF1F3</color>
     <color name="rcViewText2">#8D949E</color>
     <color name="cardViewButton">#4B4F56</color>
+    <color name="lineColor">#707070</color>
+    <color name="lineColor2">#D1CCCC</color>
 </resources>

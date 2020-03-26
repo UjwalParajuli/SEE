@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -58,12 +59,15 @@ public class VerificationActivity extends AppCompatActivity {
         }
         if (error == false){
             progress_bar_verification.setVisibility(View.VISIBLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             final RequestQueue requestQueue = Volley.newRequestQueue(VerificationActivity.this);
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if (response.trim().equals("success")){
                         progress_bar_verification.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(), "Successfully Verified. Please log in to your account", Toast.LENGTH_SHORT).show();
                         editor.clear();
                         editor.apply();
@@ -73,10 +77,12 @@ public class VerificationActivity extends AppCompatActivity {
                     }
                     else if (response.trim().equals("error")) {
                         progress_bar_verification.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         edit_text_code.setError("Incorrect Code");
                     }
                     else if (response.trim().equals("dbError")){
                         progress_bar_verification.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(), "Database Error", Toast.LENGTH_SHORT).show();
                     }
 
@@ -86,21 +92,27 @@ public class VerificationActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     if (error instanceof NetworkError) {
                         progress_bar_verification.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof ServerError) {
                         progress_bar_verification.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof AuthFailureError) {
                         progress_bar_verification.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof ParseError) {
                         progress_bar_verification.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof NoConnectionError) {
                         progress_bar_verification.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
                     } else if (error instanceof TimeoutError) {
                         progress_bar_verification.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         Toast.makeText(getApplicationContext(),"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
                     }
                 }
