@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/colorWhite">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_event_2"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_asset_3"
+            tools:ignore="VectorDrawableCompat" />
+
+        <EditText
+            android:id="@+id/edit_txt_event_name_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="Event Name"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_event_2" />
+
+        <EditText
+            android:id="@+id/edit_txt_city_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="City"
+            android:drawableLeft="@drawable/ic_action_city"
+            android:drawablePadding="15dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_event_name_2" />
+
+        <EditText
+            android:id="@+id/edit_txt_venue_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="Venue"
+            android:drawableLeft="@drawable/ic_action_venue"
+            android:drawablePadding="15dp"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_city_2" />
+
+        <EditText
+            android:id="@+id/edit_txt_start_date_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Start Date"
+            android:drawableLeft="@drawable/ic_action_date"
+            android:drawablePadding="15dp"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_venue_2" />
+
+        <EditText
+            android:id="@+id/edit_txt_start_time_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:drawableLeft="@drawable/ic_action_time"
+            android:drawablePadding="15dp"
+            android:ems="10"
+            android:hint="Start Time"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/edit_txt_start_date_2"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_venue_2" />
+
+        <EditText
+            android:id="@+id/edit_txt_end_date_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="End Date"
+            android:inputType="textPersonName"
+            android:drawableLeft="@drawable/ic_action_date"
+            android:drawablePadding="15dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_start_date_2" />
+
+        <EditText
+            android:id="@+id/edit_txt_end_time_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="End Time"
+            android:drawableLeft="@drawable/ic_action_time"
+            android:drawablePadding="15dp"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/edit_txt_end_date_2"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_start_time_2" />
+
+        <TextView
+            android:id="@+id/textView8_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Choose Category: "
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_end_date_2" />
+
+        <Spinner
+            android:id="@+id/spinner_category_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView8_2"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_end_time_2" />
+
+        <TextView
+            android:id="@+id/textView9_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Ticket Required: "
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_description_2" />
+
+        <RadioGroup
+            android:id="@+id/radio_group_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/textView9_2"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_description_2">
+
+            <RadioButton
+                android:id="@+id/rb_yes_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:fontFamily="@font/open_sans_regular" />
+
+            <RadioButton
+                android:id="@+id/rb_no_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="No"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                app:fontFamily="@font/open_sans_regular" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/edit_txt_cost_per_ticket_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="Cost Per Ticket (Rs)"
+            android:inputType="number"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radio_group_2" />
+
+        <EditText
+            android:id="@+id/edit_txt_total_tickets_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="Total Available Tickets"
+            android:inputType="number"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_cost_per_ticket_2" />
+
+        <Button
+            android:id="@+id/btn_edit_event"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/login_button_background"
+            android:text="Update"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            app:fontFamily="@font/open_sans_regular"
+            android:onClick="updateEvent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_txt_total_tickets_2" />
+
+        <EditText
+            android:id="@+id/edit_txt_description_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:ems="10"
+            android:hint="Description"
+            android:lines="5"
+            android:gravity="top"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            app:fontFamily="@font/open_sans_regular"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_category_2" />
+
+        <ProgressBar
+            android:id="@+id/progressBarEditEvent"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView_replace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="184dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_event_2"
+            app:srcCompat="@drawable/ic_add_circle_black_24dp"
+            tools:ignore="VectorDrawableCompat" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</ScrollView>
