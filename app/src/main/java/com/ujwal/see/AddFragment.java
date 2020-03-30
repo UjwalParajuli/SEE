@@ -131,6 +131,7 @@ public class AddFragment extends Fragment {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         category_spinner.setAdapter(myAdapter);
+        myAdapter.notifyDataSetChanged();
 
         category_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

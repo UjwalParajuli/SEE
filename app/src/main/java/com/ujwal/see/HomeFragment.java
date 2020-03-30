@@ -254,9 +254,14 @@ public class HomeFragment extends Fragment implements LocationListener {
 
 
                         if (eventModelArrayList.size() <= 0){
-                            LinearLayout linearLayout = getView().findViewById(R.id.linearLayout);
-                            recyclerView.setVisibility(View.GONE);
-                            linearLayout.setVisibility(View.VISIBLE);
+                            try {
+                                LinearLayout linearLayout = getView().findViewById(R.id.linearLayout);
+                                recyclerView.setVisibility(View.GONE);
+                                linearLayout.setVisibility(View.VISIBLE);
+                            }catch (Exception ex){
+
+                            }
+
                         }
 
                         recyclerView.setAdapter(eventAdapter);
@@ -370,9 +375,14 @@ public class HomeFragment extends Fragment implements LocationListener {
 
 
                         if (eventModelArrayList2.size() <= 0){
-                            LinearLayout linearLayout = getView().findViewById(R.id.linearLayout2);
-                            recyclerView2.setVisibility(View.GONE);
-                            linearLayout.setVisibility(View.VISIBLE);
+                            try {
+                                LinearLayout linearLayout = getView().findViewById(R.id.linearLayout2);
+                                recyclerView2.setVisibility(View.GONE);
+                                linearLayout.setVisibility(View.VISIBLE);
+                            }catch (Exception ex){
+
+                            }
+
                         }
 
                         recyclerView2.setAdapter(eventAdapter2);
@@ -444,7 +454,10 @@ public class HomeFragment extends Fragment implements LocationListener {
                 //progressBarHome.setVisibility(View.GONE);
                 //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 if (response.trim().equals("error")) {
-                    Toast.makeText(getContext(), "No Data", Toast.LENGTH_SHORT).show();
+                    LinearLayout linearLayout = getView().findViewById(R.id.linearLayout3);
+                    recyclerView3.setVisibility(View.GONE);
+                    linearLayout.setVisibility(View.VISIBLE);
+                    //Toast.makeText(getContext(), "No Data", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     try {
@@ -484,9 +497,14 @@ public class HomeFragment extends Fragment implements LocationListener {
 
 
                         if (eventModelArrayList3.size() <= 0){
-                            LinearLayout linearLayout = getView().findViewById(R.id.linearLayout3);
-                            recyclerView3.setVisibility(View.GONE);
-                            linearLayout.setVisibility(View.VISIBLE);
+                            try {
+
+                            }catch (Exception ex){
+                                LinearLayout linearLayout = getView().findViewById(R.id.linearLayout3);
+                                recyclerView3.setVisibility(View.GONE);
+                                linearLayout.setVisibility(View.VISIBLE);
+                            }
+
                         }
 
                         recyclerView3.setAdapter(eventAdapter3);
@@ -604,9 +622,14 @@ public class HomeFragment extends Fragment implements LocationListener {
 
 
                         if (eventModelArrayList4.size() <= 0) {
-                            LinearLayout linearLayout = getView().findViewById(R.id.linearLayout4);
-                            recyclerView4.setVisibility(View.GONE);
-                            linearLayout.setVisibility(View.VISIBLE);
+                            try {
+                                LinearLayout linearLayout = getView().findViewById(R.id.linearLayout4);
+                                recyclerView4.setVisibility(View.GONE);
+                                linearLayout.setVisibility(View.VISIBLE);
+                            }catch (Exception ex){
+
+                            }
+
                         }
 
                         recyclerView4.setAdapter(eventAdapter4);

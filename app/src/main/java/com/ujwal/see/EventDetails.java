@@ -2,8 +2,11 @@ package com.ujwal.see;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,12 +22,16 @@ public class EventDetails extends AppCompatActivity {
     EventModel eventModel;
     ImageView image_full;
     TextView text_title, text_date, text_venue, text_city, text_people, text_description, text_ticket_required, text_available_tickets, text_cost_of_ticket, text_organizer;
-    Button button_book, button_cancel, button_share, button_edit, button_delete;
+    Button button_book, button_cancel, button_share, button_edit, button_delete, button_report;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editorPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_details);
+        sharedPreferences = getSharedPreferences("Event_Details",MODE_PRIVATE);
+        editorPreferences = sharedPreferences.edit();
         image_full = (ImageView)findViewById(R.id.image_full);
         text_title = (TextView)findViewById(R.id.text_title);
         text_date = (TextView)findViewById(R.id.text_date);
@@ -41,6 +48,7 @@ public class EventDetails extends AppCompatActivity {
         button_share = (Button) findViewById(R.id.button_share);
         button_edit = (Button)findViewById(R.id.button_edit);
         button_delete = (Button)findViewById(R.id.button_delete);
+        button_report = (Button)findViewById(R.id.button_view_report);
 
         bundle = getIntent().getExtras();
         eventModel = (EventModel) bundle.getSerializable("event_details");
@@ -86,6 +94,28 @@ public class EventDetails extends AppCompatActivity {
         text_available_tickets.setText("Available Tickets:" + " " + String.valueOf(eventModel.getTotal_tickets()));
         text_cost_of_ticket.setText("Cost Per Ticket:" + " " + String.valueOf(eventModel.getCost_per_ticket()));
         text_organizer.setText(eventModel.getOrganizer_name());
+
+    }
+
+
+    public void editEvent(View view) {
+        Intent intent = new Intent(EventDetails.this, EditEvent.class);
+        editorPreferences.putString("event_image", eventModel.getEvent_image());
+        editorPreferences.putString("event_name", eventModel.getEvent_name());
+        editorPreferences.putString("event_venue", eventModel.getVenue());
+        editorPreferences.putString("event_city", eventModel.getCity());
+        editorPreferences.putString("event_start_date", eventModel.getStart_date());
+        editorPreferences.putString("event_end_date", eventModel.getEnd_date());
+        editorPreferences.putString("event_start_time", eventModel.getStart_time());
+        editorPreferences.putString("event_end_time", eventModel.getEnd_time());
+        editorPreferences.putString("event_description", eventModel.getEvent_description());
+        editorPreferences.putString("ticket_required", eventModel.getTicket_required());
+        editorPreferences.putString("event_category", eventModel.getEvent_category());
+        editorPreferences.putInt("total_tickets", eventModel.getTotal_tickets());
+        editorPreferences.putInt("event_id", eventModel.getEvent_id());
+        editorPreferences.putString("cost_per_ticket", String.valueOf(eventModel.getCost_per_ticket()));
+        editorPreferences.apply();
+        startActivity(intent);
 
     }
 }
