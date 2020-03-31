@@ -348,7 +348,7 @@
             android:layout_marginRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/img_event_2"
-            app:srcCompat="@drawable/ic_add_circle_black_24dp"
+            app:srcCompat="@drawable/ic_add_circle_outline_black_24dp"
             tools:ignore="VectorDrawableCompat" />
 
 

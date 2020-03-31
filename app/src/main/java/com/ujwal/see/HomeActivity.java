@@ -5,6 +5,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -90,13 +91,36 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         FragmentManager manager = getSupportFragmentManager();
-
-        if (manager.getBackStackEntryCount() > 1) {
+        Fragment current = getCurrentFragment();
+        if (manager.getBackStackEntryCount() >= 1 && !(current instanceof HomeFragment)) {
             // If there are back-stack entries, leave the FragmentActivity
             // implementation take care of them.
-            manager.popBackStack();
+
+            manager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE); // clear backstack first
+            FragmentTransaction transaction = manager.beginTransaction();
+            if (current instanceof HomeFragment) {
+                bottom_navigation_view.getMenu().findItem(R.id.nav_home).setChecked(true);
+            }
+            else if(current instanceof SearchFragment) {
+                bottom_navigation_view.getMenu().findItem(R.id.nav_home).setChecked(true);
+            }
+            else if (current instanceof AddFragment){
+                bottom_navigation_view.getMenu().findItem(R.id.nav_home).setChecked(true);
+            }
+            else if (current instanceof NotificationFragment){
+                bottom_navigation_view.getMenu().findItem(R.id.nav_home).setChecked(true);
+            }
+            else if (current instanceof ProfileFragment){
+                bottom_navigation_view.getMenu().findItem(R.id.nav_home).setChecked(true);
+            }
+            transaction.replace(R.id.fragment_container, new HomeFragment());
+            transaction.commit();
+
+
+
 
         } else {
+            //super.onBackPressed();
             // Otherwise, ask user if he wants to leave :)
             new AlertDialog.Builder(this)
                     .setTitle("Really Exit?")
@@ -105,9 +129,9 @@ public class HomeActivity extends AppCompatActivity {
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface arg0, int arg1) {
-                            // MainActivity.super.onBackPressed();
-                            finish();
                             moveTaskToBack(true);
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                            System.exit(1);
                         }
                     }).create().show();
         }

@@ -50,6 +50,7 @@
             android:name=".ChangePassword"
             android:theme="@style/HomeTheme" />
         <activity android:name=".EventDetails"
+            android:theme="@style/HomeTheme"
             android:parentActivityName=".HomeActivity"/>
         <activity android:name=".EditEvent"
             android:parentActivityName=".HomeActivity"></activity>
