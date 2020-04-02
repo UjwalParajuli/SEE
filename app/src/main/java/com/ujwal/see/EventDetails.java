@@ -262,7 +262,7 @@ public class EventDetails extends AppCompatActivity {
         emailList = listdata.toArray(emailList);
         Bitmap bitmap = getBitmapFromView(image_full);
         try {
-            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder(); //to access inside the directory
             StrictMode.setVmPolicy(builder.build());
             File file = new File(this.getExternalCacheDir(), "event_banner.jpg");
             FileOutputStream fOut = new FileOutputStream(file);
@@ -277,7 +277,7 @@ public class EventDetails extends AppCompatActivity {
             }
             intent.putExtra(Intent.EXTRA_SUBJECT, "Invitation for Event");
             intent.putExtra(Intent.EXTRA_TEXT,eventModel.getEvent_name() + "\n" + "\n" + eventModel.getEvent_description() + "\n" + "\n" +
-            "Download Search Event Everywhere (SEE) app from Google Play Store and book your seat now." + "\n" + "\n" +
+            "To know more about the event, download Search Event Everywhere (SEE) app from Google Play Store and book your seat now." + "\n" + "\n" +
             "If already downloaded, login to your account and book your seat now.");
             intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
             intent.setType("image/*");

@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment implements LocationListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Home");
+        //getActivity().setTitle("Home");
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         textView = view.findViewById(R.id.demo_id);
         textView2 = view.findViewById(R.id.demo_id_2);
@@ -454,10 +454,7 @@ public class HomeFragment extends Fragment implements LocationListener {
                 //progressBarHome.setVisibility(View.GONE);
                 //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 if (response.trim().equals("error")) {
-                    LinearLayout linearLayout = getView().findViewById(R.id.linearLayout3);
-                    recyclerView3.setVisibility(View.GONE);
-                    linearLayout.setVisibility(View.VISIBLE);
-                    //Toast.makeText(getContext(), "No Data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "No Data", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     try {
@@ -498,11 +495,11 @@ public class HomeFragment extends Fragment implements LocationListener {
 
                         if (eventModelArrayList3.size() <= 0){
                             try {
-
-                            }catch (Exception ex){
                                 LinearLayout linearLayout = getView().findViewById(R.id.linearLayout3);
                                 recyclerView3.setVisibility(View.GONE);
                                 linearLayout.setVisibility(View.VISIBLE);
+                            }catch (Exception ex){
+
                             }
 
                         }
