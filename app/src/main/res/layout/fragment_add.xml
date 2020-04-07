@@ -105,6 +105,7 @@
             android:textColor="@color/colorBlack"
             android:textSize="14sp"
             app:fontFamily="@font/open_sans_regular"
+            android:focusableInTouchMode="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_txt_venue" />
 
@@ -124,6 +125,7 @@
             android:inputType="textPersonName"
             android:textColor="@color/colorBlack"
             android:textSize="14sp"
+            android:focusableInTouchMode="false"
             app:fontFamily="@font/open_sans_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/edit_txt_start_date"
@@ -144,6 +146,7 @@
             android:textColor="@color/colorBlack"
             android:textSize="14sp"
             app:fontFamily="@font/open_sans_regular"
+            android:focusableInTouchMode="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_txt_start_date" />
 
@@ -164,6 +167,7 @@
             android:textColor="@color/colorBlack"
             android:textSize="14sp"
             app:fontFamily="@font/open_sans_regular"
+            android:focusableInTouchMode="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/edit_txt_end_date"
             app:layout_constraintTop_toBottomOf="@+id/edit_txt_start_time" />

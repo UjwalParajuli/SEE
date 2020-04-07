@@ -27,33 +27,44 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeTheme" />
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeTheme" />
         <activity
             android:name=".RegisterActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeTheme" />
         <activity
             android:name=".VerificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeTheme" />
         <activity
             android:name=".ForgotPasswordActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeTheme" />
         <activity
             android:name=".HomeActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ForgotPassVerificationActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeTheme" />
         <activity
             android:name=".ChangePassword"
+            android:screenOrientation="portrait"
             android:theme="@style/HomeTheme" />
         <activity android:name=".EventDetails"
+            android:launchMode="singleTask"
             android:theme="@style/HomeTheme"
+            android:screenOrientation="portrait"
             android:parentActivityName=".HomeActivity"/>
         <activity android:name=".EditEvent"
-            android:parentActivityName=".HomeActivity"></activity>
+            android:screenOrientation="portrait"
+            android:parentActivityName=".EventDetails"></activity>
     </application>
 
 </manifest>

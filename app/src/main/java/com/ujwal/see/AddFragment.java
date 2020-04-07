@@ -92,7 +92,7 @@ public class AddFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle("Add Event");
+        //getActivity().setTitle("Add Event");
         View view = inflater.inflate(R.layout.fragment_add, container, false);
 
 //        toolbar = (Toolbar)view.findViewById(R.id.toolbar);
@@ -205,7 +205,7 @@ public class AddFragment extends Fragment {
         month = month + 1;
 
         //set start date on edit text and show date picker dialog
-        edit_text_start_date.setText(day+"-"+month+"-"+year);
+        //edit_text_start_date.setText(day+"-"+month+"-"+year);
 
         edit_text_start_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,7 +227,7 @@ public class AddFragment extends Fragment {
 
 
         //set end date on edit text and show date picker dialog
-        edit_text_end_date.setText(day+"-"+month+"-"+year);
+        //edit_text_end_date.setText(day+"-"+month+"-"+year);
 
         edit_text_end_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -260,7 +260,7 @@ public class AddFragment extends Fragment {
         currentHour = mCurrentDate.get(Calendar.HOUR_OF_DAY);
         currentMinute = mCurrentDate.get(Calendar.MINUTE);
 
-        edit_text_start_time.setText(currentHour + ":" + currentMinute);
+        //edit_text_start_time.setText(currentHour + ":" + currentMinute);
 
         edit_text_start_time.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -284,7 +284,7 @@ public class AddFragment extends Fragment {
         });
 
         //set end time on edit text and show time picker dialog
-        edit_text_end_time.setText(currentHour + ":" + currentMinute);
+        //edit_text_end_time.setText(currentHour + ":" + currentMinute);
 
         edit_text_end_time.setOnClickListener(new View.OnClickListener() {
             @Override

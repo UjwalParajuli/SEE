@@ -58,7 +58,7 @@ public class EventDetails extends AppCompatActivity {
     EventModel eventModel;
     ImageView image_full;
     TextView text_title, text_date, text_venue, text_city, text_people, text_description, text_ticket_required, text_available_tickets, text_cost_of_ticket, text_organizer;
-    Button button_book, button_cancel, button_share, button_edit, button_delete, button_report;
+    Button button_interested, button_not_interested, button_purchase_ticket, button_share, button_edit, button_delete, button_report;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editorPreferences;
     SharedPreferences sharedPreferences2;
@@ -89,18 +89,38 @@ public class EventDetails extends AppCompatActivity {
         text_available_tickets = (TextView) findViewById(R.id.text_available_tickets);
         text_cost_of_ticket = (TextView) findViewById(R.id.text_cost_of_ticket);
         text_organizer = (TextView) findViewById(R.id.text_organizer);
-        button_book = (Button) findViewById(R.id.button_book);
-        button_cancel = (Button) findViewById(R.id.button_cancel_book);
+        button_interested = (Button) findViewById(R.id.button_interested);
+        button_not_interested = (Button) findViewById(R.id.button_not_interested);
         button_share = (Button) findViewById(R.id.button_share);
         button_edit = (Button) findViewById(R.id.button_edit);
         button_delete = (Button) findViewById(R.id.button_delete);
         button_report = (Button) findViewById(R.id.button_view_report);
+        button_purchase_ticket = (Button)findViewById(R.id.button_purchase_ticket);
 
         bundle = getIntent().getExtras();
         eventModel = (EventModel) bundle.getSerializable("event_details");
         this.setTitle(eventModel.getEvent_name());
+
+        checkInterested();
+        if (sharedPreferences2.getInt("user_id", 0) == eventModel.getOrganizer_id()){
+            button_interested.setVisibility(View.GONE);
+            button_not_interested.setVisibility(View.GONE);
+            button_report.setVisibility(View.VISIBLE);
+            button_edit.setVisibility(View.VISIBLE);
+            button_delete.setVisibility(View.VISIBLE);
+        }
+
+        if (sharedPreferences2.getInt("user_type", 0) == 4){
+            button_interested.setVisibility(View.GONE);
+        }
+
+        if (sharedPreferences2.getInt("user_id", 0) != eventModel.getOrganizer_id() && eventModel.getTicket_required().equals("Yes")){
+            button_purchase_ticket.setVisibility(View.VISIBLE);
+        }
+
         getData();
         getEmail();
+
     }
 
     public void getData() {
@@ -277,8 +297,9 @@ public class EventDetails extends AppCompatActivity {
             }
             intent.putExtra(Intent.EXTRA_SUBJECT, "Invitation for Event");
             intent.putExtra(Intent.EXTRA_TEXT,eventModel.getEvent_name() + "\n" + "\n" + eventModel.getEvent_description() + "\n" + "\n" +
-            "To know more about the event, download Search Event Everywhere (SEE) app from Google Play Store and book your seat now." + "\n" + "\n" +
-            "If already downloaded, login to your account and book your seat now.");
+                    "Date: " + eventModel.getStart_date() + "\n" + "\n" +
+            "To know more about the event, download Search Event Everywhere (SEE) app from Google Play Store." + "\n" + "\n" +
+            "If already downloaded, login to your account and view the detailed information.");
             intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
             intent.setType("image/*");
             startActivity(Intent.createChooser(intent, "Share image via"));
@@ -365,6 +386,192 @@ public class EventDetails extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("email", sharedPreferences2.getString("email", null));
+                return params;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void interested(View view) {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        String url = "https://ujwalparajuli.000webhostapp.com/android/interested.php";
+        final RequestQueue requestQueue = Volley.newRequestQueue(EventDetails.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                if (response.trim().equals("success")) {
+                    button_interested.setVisibility(View.GONE);
+                    button_not_interested.setVisibility(View.VISIBLE);
+
+                }
+                else if (response.trim().equals("error")){
+                    Toast.makeText(EventDetails.this, "Could not added", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                if (error instanceof NetworkError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof TimeoutError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", String.valueOf(sharedPreferences2.getInt("user_id", 0)));
+                params.put("event_id", String.valueOf(eventModel.getEvent_id()));
+                return params;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+
+    }
+
+    public void checkInterested(){
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        String url = "https://ujwalparajuli.000webhostapp.com/android/checkInterested.php";
+        final RequestQueue requestQueue = Volley.newRequestQueue(EventDetails.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                if (response.trim().equals("error")) {
+                    button_interested.setVisibility(View.GONE);
+                    button_not_interested.setVisibility(View.VISIBLE);
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                if (error instanceof NetworkError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof TimeoutError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", String.valueOf(sharedPreferences2.getInt("user_id", 0)));
+                params.put("event_id", String.valueOf(eventModel.getEvent_id()));
+                return params;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void notInterested(View view) {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+        String url = "https://ujwalparajuli.000webhostapp.com/android/notInterested.php";
+        final RequestQueue requestQueue = Volley.newRequestQueue(EventDetails.this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                if (response.trim().equals("success")) {
+                    button_interested.setVisibility(View.VISIBLE);
+                    button_not_interested.setVisibility(View.GONE);
+
+                }
+                else if (response.trim().equals("error")){
+                    Toast.makeText(EventDetails.this, "Could not removed", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                if (error instanceof NetworkError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ServerError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof AuthFailureError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof ParseError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof NoConnectionError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                } else if (error instanceof TimeoutError) {
+                    //progressBarHome.setVisibility(View.GONE);
+                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    Toast.makeText(EventDetails.this,"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
+                }
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", String.valueOf(sharedPreferences2.getInt("user_id", 0)));
+                params.put("event_id", String.valueOf(eventModel.getEvent_id()));
                 return params;
             }
 

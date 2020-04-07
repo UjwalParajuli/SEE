@@ -127,12 +127,14 @@ public class LoginActivity extends AppCompatActivity {
                             String email = jsonResponse.getString("email");
                             String address = jsonResponse.getString("address");
                             String phone = jsonResponse.getString("phone");
+                            String image = jsonResponse.getString("image");
                             int user_type = jsonResponse.getInt("user_type_id");
 
                             editorPreferences.putString("full_name", name);
                             editorPreferences.putString("email", email);
                             editorPreferences.putString("address", address);
                             editorPreferences.putString("phone", phone);
+                            editorPreferences.putString("image", image);
                             editorPreferences.putInt("user_type", user_type);
                             editorPreferences.putInt("user_id", id);
                             editorPreferences.apply();

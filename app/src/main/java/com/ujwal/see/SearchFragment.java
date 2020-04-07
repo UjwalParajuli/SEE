@@ -323,29 +323,59 @@ public class SearchFragment extends Fragment {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     if (error instanceof NetworkError) {
-                        progress_bar_search.setVisibility(View.GONE);
-                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                        Toast.makeText(getContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                        try {
+                            progress_bar_search.setVisibility(View.GONE);
+                            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                            Toast.makeText(getContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                        }catch (Exception ex){
+
+                        }
+
                     } else if (error instanceof ServerError) {
-                        progress_bar_search.setVisibility(View.GONE);
-                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                        Toast.makeText(getContext(),"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                        try {
+                            progress_bar_search.setVisibility(View.GONE);
+                            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                            Toast.makeText(getContext(),"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                        }catch (Exception ex){
+
+                        }
+
                     } else if (error instanceof AuthFailureError) {
-                        progress_bar_search.setVisibility(View.GONE);
-                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                        Toast.makeText(getContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                        try {
+                            progress_bar_search.setVisibility(View.GONE);
+                            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                            Toast.makeText(getContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                        }catch (Exception ex){
+
+                        }
+
                     } else if (error instanceof ParseError) {
-                        progress_bar_search.setVisibility(View.GONE);
-                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                        Toast.makeText(getContext(),"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                        try {
+                            progress_bar_search.setVisibility(View.GONE);
+                            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                            Toast.makeText(getContext(),"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                        }catch (Exception ex){
+
+                        }
+
                     } else if (error instanceof NoConnectionError) {
-                        progress_bar_search.setVisibility(View.GONE);
-                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                        Toast.makeText(getContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                        try {
+                            progress_bar_search.setVisibility(View.GONE);
+                            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                            Toast.makeText(getContext(),"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                        }catch (Exception ex){
+
+                        }
+
                     } else if (error instanceof TimeoutError) {
-                        progress_bar_search.setVisibility(View.GONE);
-                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                        Toast.makeText(getContext(),"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
+                        try {
+                            progress_bar_search.setVisibility(View.GONE);
+                            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                            Toast.makeText(getContext(),"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
+                        }catch (Exception ex){
+
+                        }
+
                     }
                 }
             }) {
@@ -360,7 +390,6 @@ public class SearchFragment extends Fragment {
                 }
             };
             requestQueue.add(stringRequest);
-
         }
         }
 
