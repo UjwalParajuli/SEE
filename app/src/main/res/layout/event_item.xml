@@ -79,7 +79,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/open_sans_regular"
-                android:text="0 people coming"
+                android:text="0 people interested"
                 android:textColor="@color/rcViewText2"
                 android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="parent"

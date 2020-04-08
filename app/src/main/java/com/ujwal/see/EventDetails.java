@@ -154,7 +154,7 @@ public class EventDetails extends AppCompatActivity {
 
         text_venue.setText(eventModel.getVenue());
         text_city.setText(eventModel.getCity());
-        text_people.setText(String.valueOf(eventModel.getTotal_people() + " " + "people coming"));
+        text_people.setText(String.valueOf(eventModel.getTotal_people() + " " + "people interested"));
         text_description.setText(eventModel.getEvent_description());
         text_ticket_required.setText("Ticket Required:" + " " + eventModel.getTicket_required());
         text_available_tickets.setText("Available Tickets:" + " " + String.valueOf(eventModel.getTotal_tickets()));
@@ -402,13 +402,24 @@ public class EventDetails extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                if (response.trim().equals("success")) {
-                    button_interested.setVisibility(View.GONE);
-                    button_not_interested.setVisibility(View.VISIBLE);
+                if (response.trim().equals("error")) {
+                    Toast.makeText(EventDetails.this, "Could not added", Toast.LENGTH_SHORT).show();
+
 
                 }
-                else if (response.trim().equals("error")){
-                    Toast.makeText(EventDetails.this, "Could not added", Toast.LENGTH_SHORT).show();
+                else {
+                    button_interested.setVisibility(View.GONE);
+                    button_not_interested.setVisibility(View.VISIBLE);
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+
+                        int total_people = jsonResponse.getInt("total_people");
+                        text_people.setText(String.valueOf(total_people) + " " + "people interested");
+
+                    }catch (JSONException e){
+                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
 
@@ -525,13 +536,23 @@ public class EventDetails extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                if (response.trim().equals("success")) {
-                    button_interested.setVisibility(View.VISIBLE);
-                    button_not_interested.setVisibility(View.GONE);
+                if (response.trim().equals("error")) {
+                    Toast.makeText(EventDetails.this, "Could not removed", Toast.LENGTH_SHORT).show();
+
 
                 }
-                else if (response.trim().equals("error")){
-                    Toast.makeText(EventDetails.this, "Could not removed", Toast.LENGTH_SHORT).show();
+                else {
+                    button_interested.setVisibility(View.VISIBLE);
+                    button_not_interested.setVisibility(View.GONE);
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+
+                        int total_people = jsonResponse.getInt("total_people");
+                        text_people.setText(String.valueOf(total_people) + " " + "people interested");
+
+                    }catch (JSONException e){
+                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    }
                 }
 
 

@@ -79,7 +79,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
         }
         titleText.setText(eventModel.getEvent_name());
         venueText.setText(eventModel.getVenue());
-        totalPeople.setText(String.valueOf(eventModel.getTotal_people()) + " " + "people coming");
+        totalPeople.setText(String.valueOf(eventModel.getTotal_people()) + " " + "people interested");
         Picasso.get().load(eventModel.event_image).into(bannerImage);
 
         btn_view_more.setOnClickListener(new View.OnClickListener() {
