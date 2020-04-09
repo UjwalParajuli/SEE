@@ -599,4 +599,13 @@ public class EventDetails extends AppCompatActivity {
         };
         requestQueue.add(stringRequest);
     }
+
+    public void purchaseTicket(View view) {
+        Intent intent = new Intent(EventDetails.this, Checkout.class);
+        editorPreferences.putInt("total_tickets", eventModel.getTotal_tickets());
+        editorPreferences.putString("cost_per_ticket", String.valueOf(eventModel.getCost_per_ticket()));
+        editorPreferences.apply();
+        startActivity(intent);
+
+    }
 }

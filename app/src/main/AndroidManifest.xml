@@ -58,14 +58,19 @@
             android:name=".ChangePassword"
             android:screenOrientation="portrait"
             android:theme="@style/HomeTheme" />
-        <activity android:name=".EventDetails"
+        <activity
+            android:name=".EventDetails"
             android:launchMode="singleTask"
-            android:theme="@style/HomeTheme"
+            android:parentActivityName=".HomeActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".HomeActivity"/>
-        <activity android:name=".EditEvent"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".EventDetails"></activity>
+            android:theme="@style/HomeTheme" />
+        <activity
+            android:name=".EditEvent"
+            android:parentActivityName=".EventDetails"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Checkout"
+            android:parentActivityName=".EventDetails"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
