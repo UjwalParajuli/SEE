@@ -73,7 +73,7 @@
                 android:fontFamily="@font/open_sans_bold"
                 android:text="Final Year Project Showcase"
                 android:textColor="@color/colorBlack"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,7 +87,7 @@
                 android:fontFamily="@font/open_sans_semi_bold"
                 android:text="FRIDAY, MAR 28 - MAR 30, 2020 at 12:00 PM - 5:00 PM"
                 android:textColor="@color/rcViewText2"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
@@ -101,7 +101,7 @@
                 android:fontFamily="@font/open_sans_semi_bold"
                 android:text="Informatics College"
                 android:textColor="@color/rcViewText2"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_date" />
 
@@ -115,7 +115,7 @@
                 android:fontFamily="@font/open_sans_regular"
                 android:text="Matepani-12, Pokhara"
                 android:textColor="@color/rcViewText2"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_venue" />
 
@@ -129,7 +129,7 @@
                 android:fontFamily="@font/open_sans_semi_bold"
                 android:text="0 people coming"
                 android:textColor="@color/rcViewText2"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_city" />
 
@@ -148,7 +148,7 @@
                     android:paddingRight="110dp"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     app:fontFamily="@font/open_sans_regular"
                     android:onClick="interested"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -164,7 +164,7 @@
                     android:text="Interested"
                     android:textAllCaps="false"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:drawableLeft="@drawable/ic_check_black_24dp"
                     android:drawableStart="@drawable/ic_check_black_24dp"
                     android:paddingStart="115dp"

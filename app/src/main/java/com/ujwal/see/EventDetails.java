@@ -601,11 +601,29 @@ public class EventDetails extends AppCompatActivity {
     }
 
     public void purchaseTicket(View view) {
-        Intent intent = new Intent(EventDetails.this, Checkout.class);
-        editorPreferences.putInt("total_tickets", eventModel.getTotal_tickets());
-        editorPreferences.putString("cost_per_ticket", String.valueOf(eventModel.getCost_per_ticket()));
-        editorPreferences.apply();
-        startActivity(intent);
+        if (eventModel.getTotal_tickets() > 0){
+            Intent intent = new Intent(EventDetails.this, Checkout.class);
+            editorPreferences.putInt("event_id", eventModel.getEvent_id());
+            editorPreferences.putInt("total_tickets", eventModel.getTotal_tickets());
+            editorPreferences.putString("cost_per_ticket", String.valueOf(eventModel.getCost_per_ticket()));
+            editorPreferences.putString("event_name", eventModel.getEvent_name());
+            editorPreferences.apply();
+            startActivity(intent);
+        }
+        else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(EventDetails.this);
+            builder.setMessage("Sorry! All tickets are sold out.");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
 
     }
 }
