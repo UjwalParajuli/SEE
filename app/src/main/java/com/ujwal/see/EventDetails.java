@@ -626,4 +626,13 @@ public class EventDetails extends AppCompatActivity {
 
 
     }
+
+    public void viewReport(View view) {
+        Intent intent = new Intent(EventDetails.this, Report.class);
+        editorPreferences.putInt("event_id", eventModel.getEvent_id());
+        editorPreferences.putString("event_name", eventModel.getEvent_name());
+        editorPreferences.apply();
+        startActivity(intent);
+
+    }
 }

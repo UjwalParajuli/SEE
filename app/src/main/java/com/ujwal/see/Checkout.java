@@ -141,7 +141,8 @@ public class Checkout extends AppCompatActivity {
             @Override
             public void onError(@NonNull String action, @NonNull Map<String, String> errorMap) {
                 Log.e("hello", errorMap.toString());
-                Toast.makeText(Checkout.this, errorMap.toString(), Toast.LENGTH_SHORT).show();
+                addPurchase();
+
             }
 
         });
@@ -188,7 +189,7 @@ public class Checkout extends AppCompatActivity {
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    addPurchase();
+                    openKhalti();
                 }
             });
             builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -217,11 +218,10 @@ public class Checkout extends AppCompatActivity {
                 progress_bar_checkout.setVisibility(View.GONE);
                 if (response.trim().equals("success")) {
                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    openKhalti();
-//                    Toast.makeText(Checkout.this, "Payment Successful", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(Checkout.this, HomeActivity.class);
-//                    startActivity(intent);
-//                    finish();
+                    Toast.makeText(Checkout.this, "Payment Successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Checkout.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
 
                 } else if (response.trim().equals("error")) {
                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
