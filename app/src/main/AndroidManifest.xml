@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -72,11 +73,14 @@
             android:parentActivityName=".EventDetails"
             android:screenOrientation="portrait" />
         <activity android:name=".Report"
+            android:launchMode="singleTask"
             android:parentActivityName=".EventDetails"
             android:screenOrientation="portrait"/>
         <activity android:name=".Interested"
+            android:parentActivityName=".Report"
             android:screenOrientation="portrait"/>
         <activity android:name=".Purchased"
+            android:parentActivityName=".Report"
             android:screenOrientation="portrait"></activity>
     </application>
 

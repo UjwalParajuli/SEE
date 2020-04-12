@@ -6,10 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PurchasedAdapter extends RecyclerView.Adapter<PurchasedAdapter.ViewHolder> {
     ArrayList<PurchasedModel> purchasedModelArrayList;
@@ -38,7 +41,10 @@ public class PurchasedAdapter extends RecyclerView.Adapter<PurchasedAdapter.View
 
         TextView user_name = holder.user_name;
         TextView phone_number = holder.phone_number;
+        CircleImageView user_image_profile = holder.profile_image_user;
 
+
+        Picasso.get().load(purchasedModel.user_image).into(user_image_profile);
         user_name.setText(purchasedModel.getUser_name());
         phone_number.setText(purchasedModel.getMobile());
 
@@ -51,12 +57,14 @@ public class PurchasedAdapter extends RecyclerView.Adapter<PurchasedAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView user_name, phone_number;
+        public CircleImageView profile_image_user;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             user_name = itemView.findViewById(R.id.text_view_interested_name);
             phone_number = itemView.findViewById(R.id.text_view_interested_phone);
+            profile_image_user = itemView.findViewById(R.id.profile_image_recycler);
         }
     }
 }
