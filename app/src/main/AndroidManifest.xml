@@ -72,16 +72,25 @@
             android:name=".Checkout"
             android:parentActivityName=".EventDetails"
             android:screenOrientation="portrait" />
-        <activity android:name=".Report"
+        <activity
+            android:name=".Report"
             android:launchMode="singleTask"
             android:parentActivityName=".EventDetails"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Interested"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Interested"
             android:parentActivityName=".Report"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Purchased"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Purchased"
             android:parentActivityName=".Report"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".EditProfile"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".HomeActivity"/>
+        <activity android:name=".UpdateVerification"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".EditProfile"></activity>
     </application>
 
 </manifest>

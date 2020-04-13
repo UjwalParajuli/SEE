@@ -45,6 +45,7 @@ public class VerificationActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("RegisterForm",MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        editor.apply();
 
     }
 

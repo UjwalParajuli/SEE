@@ -76,8 +76,10 @@ public class EventDetails extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         sharedPreferences = getSharedPreferences("Event_Details", MODE_PRIVATE);
         editorPreferences = sharedPreferences.edit();
+        editorPreferences.apply();
         sharedPreferences2 = getSharedPreferences("LoginForm",MODE_PRIVATE);
         editorPreferences2 = sharedPreferences2.edit();
+        editorPreferences2.apply();
         image_full = (ImageView) findViewById(R.id.image_full);
         text_title = (TextView) findViewById(R.id.text_title);
         text_date = (TextView) findViewById(R.id.text_date);

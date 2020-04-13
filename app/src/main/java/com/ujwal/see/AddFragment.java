@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,6 +58,9 @@ import com.android.volley.toolbox.Volley;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -415,14 +420,25 @@ public class AddFragment extends Fragment {
 
 
 
+
+
     public void addEvent(){
         final String images, event_name, city_name, venue_name, start_date, end_date, start_time, end_time, category, description, ticket_required, cost_per_ticket, total_tickets;
         int radioId = radio_group.getCheckedRadioButtonId();
+        String image1;
         radio_button = getActivity().findViewById(radioId);
         boolean error = false;
         String url = "https://ujwalparajuli.000webhostapp.com/android/addEvent.php";
 
-        images = getStringImage(bitmap);
+        try {
+            int check = bitmap.getWidth();
+            image1 = getStringImage(bitmap);
+        }catch (Exception ex){
+            image1 = sharedPreferences.getString("image", null);
+        }
+
+        images = image1;
+
         event_name = edit_text_event_name.getText().toString().trim();
         city_name = edit_text_city.getText().toString().trim();
         venue_name = edit_text_venue.getText().toString().trim();

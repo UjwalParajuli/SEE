@@ -58,6 +58,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("ForgotPassword", MODE_PRIVATE);
         editorPreferences = sharedPreferences.edit();
+        editorPreferences.apply();
 
     }
 

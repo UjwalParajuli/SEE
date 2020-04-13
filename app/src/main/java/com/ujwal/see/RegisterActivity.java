@@ -81,6 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("RegisterForm",MODE_PRIVATE);
         editorPreferences = sharedPreferences.edit();
+        editorPreferences.apply();
     }
 
     public void openLoginPage(View view) {

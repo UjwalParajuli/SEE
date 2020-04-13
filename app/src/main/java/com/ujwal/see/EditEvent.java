@@ -12,10 +12,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputType;
@@ -53,6 +55,9 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -62,6 +67,7 @@ import java.util.Map;
 
 public class EditEvent extends AppCompatActivity {
     Bitmap bitmap;
+    Bitmap bitmap1;
     Spinner category_spinner;
     ImageView img_view_event, image_view_replace;
     EditText edit_text_event_name, edit_text_city, edit_text_venue, edit_text_start_date, edit_text_start_time, edit_text_end_date, edit_text_end_time, edit_text_description, edit_text_cost_per_ticket, edit_text_total_ticket;
@@ -88,6 +94,7 @@ public class EditEvent extends AppCompatActivity {
         setTitle("Edit Event");
         sharedPreferences = getSharedPreferences("Event_Details",MODE_PRIVATE);
         editorPreferences = sharedPreferences.edit();
+        editorPreferences.apply();
         image_view_replace = (ImageView)findViewById(R.id.imageView_replace);
         progress_bar_edit_event = (ProgressBar)findViewById(R.id.progressBarEditEvent);
         img_view_event = (ImageView)findViewById(R.id.img_event_2);
@@ -408,14 +415,39 @@ public class EditEvent extends AppCompatActivity {
 
     }
 
+    public static Bitmap getBitmapFromURL(String src) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
+    }
+
     public void updateEvent(View view) {
         final String images, event_name, city_name, venue_name, start_date, end_date, start_time, end_time, category, description, ticket_required, cost_per_ticket, total_tickets;
         int radioId = radio_group_2.getCheckedRadioButtonId();
         radio_button = findViewById(radioId);
         boolean error = false;
         String url = "https://ujwalparajuli.000webhostapp.com/android/updateEvent.php";
-
-        images = getStringImage(bitmap);
+        String image1 = null;
+        String imageUrl = sharedPreferences.getString("event_image",null);
+        try {
+            int check = bitmap.getWidth();
+            image1 = getStringImage(bitmap);
+        }catch (Exception ex){
+            bitmap1 = getBitmapFromURL(imageUrl);
+            image1 = getStringImage(bitmap1);
+        }
+        images = image1;
         event_name = edit_text_event_name.getText().toString().trim();
         city_name = edit_text_city.getText().toString().trim();
         venue_name = edit_text_venue.getText().toString().trim();

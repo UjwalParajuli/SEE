@@ -52,6 +52,7 @@ public class Report extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("Event_Details", MODE_PRIVATE);
         editorPreferences = sharedPreferences.edit();
+        editorPreferences.apply();
 
         this.setTitle(sharedPreferences.getString("event_name", null));
 

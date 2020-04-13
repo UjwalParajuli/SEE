@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         progress_bar_login = (ProgressBar) findViewById(R.id.progress_bar_login);
         sharedPreferences = getSharedPreferences("LoginForm",MODE_PRIVATE);
         editorPreferences = sharedPreferences.edit();
+        editorPreferences.apply();
 
         edit_text_email.setText(sharedPreferences.getString("email2", null));
         edit_text_password.setText(sharedPreferences.getString("password", null));

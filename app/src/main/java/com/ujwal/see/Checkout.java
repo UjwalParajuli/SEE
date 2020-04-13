@@ -57,8 +57,10 @@ public class Checkout extends AppCompatActivity {
         this.setTitle("Purchase Ticket");
         sharedPreferences = getSharedPreferences("Event_Details", MODE_PRIVATE);
         editorPreferences = sharedPreferences.edit();
+        editorPreferences.apply();
         sharedPreferences2 = getSharedPreferences("LoginForm",MODE_PRIVATE);
         editorPreferences2 = sharedPreferences2.edit();
+        editorPreferences2.apply();
 
         progress_bar_checkout = (ProgressBar) findViewById(R.id.progress_bar_checkout);
         button_open_khalti = (KhaltiButton) findViewById(R.id.button_open_khalti);
