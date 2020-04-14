@@ -24,7 +24,7 @@
             android:text="Today's Events"
             android:paddingLeft="15dp"
             android:textSize="16sp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorPrimary"
             android:fontFamily="@font/open_sans_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -81,7 +81,7 @@
             android:fontFamily="@font/open_sans_bold"
             android:paddingLeft="15dp"
             android:text="Upcoming Events"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -136,7 +136,7 @@
             android:fontFamily="@font/open_sans_bold"
             android:paddingLeft="15dp"
             android:text="Events Nearby You"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -193,7 +193,7 @@
             android:fontFamily="@font/open_sans_bold"
             android:paddingLeft="15dp"
             android:text="Ongoing Events"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />

@@ -23,7 +23,7 @@
             android:paddingLeft="15dp"
             android:textSize="18sp"
             android:textColor="@color/colorBackgroundSplash"
-            android:fontFamily="@font/tinos_bold"
+            android:fontFamily="@font/open_sans_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,7 +76,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/tinos_bold"
+            android:fontFamily="@font/open_sans_bold"
             android:paddingLeft="15dp"
             android:text="Tickets Purchased"
             android:textColor="@color/colorBackgroundSplash"

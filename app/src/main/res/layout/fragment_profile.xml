@@ -104,10 +104,10 @@
                             android:id="@+id/textView24"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:layout_marginLeft="6dp"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginLeft="3dp"
                             android:fontFamily="@font/open_sans_regular"
-                            android:text="Attended"
+                            android:text="Interested"
                             android:textColor="@color/colorBlack"
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -132,8 +132,6 @@
                             android:id="@+id/textView27"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="2dp"
-                            android:layout_marginRight="2dp"
                             android:fontFamily="@font/open_sans_regular"
                             android:text="Organized"
                             android:textColor="@color/colorBlack"
@@ -190,6 +188,30 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
                 <TextView
+                    android:id="@+id/text_view_change_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+                    android:drawablePadding="20dp"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:text="Change Password"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+                <View
+                    android:id="@+id/divider_profile_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/lineColor2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_change_password" />
+
+                <TextView
                     android:id="@+id/text_view_about_us"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -201,7 +223,7 @@
                     android:textColor="@color/colorBlack"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView28" />
+                    app:layout_constraintTop_toBottomOf="@+id/divider_profile_3" />
 
                 <View
                     android:id="@+id/divider_profile_1"

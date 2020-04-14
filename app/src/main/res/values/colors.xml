@@ -20,4 +20,6 @@
     <color name="report_phone">#C4C4C4</color>
     <color name="detail_email">#575757</color>
     <color name="edit_profile">#949494</color>
+    <color name="ticket_heading">#1B1B1B</color>
+    <color name="dotted">#707070</color>
 </resources>
