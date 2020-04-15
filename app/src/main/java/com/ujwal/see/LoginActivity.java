@@ -138,6 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                             editorPreferences.putString("image", image);
                             editorPreferences.putInt("user_type", user_type);
                             editorPreferences.putInt("user_id", id);
+                            editorPreferences.putString("password2", password);
                             editorPreferences.apply();
 
                             if (check_box_remember_me.isChecked()){

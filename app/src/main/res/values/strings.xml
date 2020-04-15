@@ -4,6 +4,9 @@
     <string name="view_event"><u>View Event --></u></string>
     <string name="login_text">Not Signed Up Yet? <u>Sign Up</u></string>
     <string name="login_text_1">Already Signed Up? <u>Login</u></string>
+    <string name="rating_statement">We would like your feedback to improve our application.</string>
+    <string name="rating_request">What is your opinion of this application?</string>
+    <string name="feedback">Please leave your feedback below:</string>
 
     <string-array name="categories">
         <item>Conference</item>

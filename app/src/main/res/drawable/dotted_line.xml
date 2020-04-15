@@ -1,14 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="line" >
 
-    <size
-        android:height="4dp"
-        android:width="1024dp"/>
     <stroke
-        android:width="4dp"
-        android:dashWidth="4dp"
-        android:color="@android:color/black"
-        android:dashGap="5dp"/>
+        android:dashGap="8dp"
+        android:dashWidth="16dp"
+        android:width="2dp"
+        android:color="@color/edit_profile" />
 
+    <size android:height="3dp" />
 </shape>

@@ -40,7 +40,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class ProfileFragment extends Fragment {
     CircleImageView profile_image;
-    TextView text_user_name, text_user_type, text_total_attended, text_total_organized, text_total_tickets, text_change_password, text_about_us, text_help, text_logout, text_organized, text_purchased, text_interested;
+    TextView text_user_name, text_user_type, text_total_attended, text_total_organized, text_total_tickets, text_change_password, text_about_us, text_help, text_logout, text_organized, text_purchased, text_interested, text_feedback;
     Button button_edit_profile;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editorPreferences;
@@ -69,6 +69,7 @@ public class ProfileFragment extends Fragment {
         text_organized = (TextView)view.findViewById(R.id.textView27);
         text_interested = (TextView)view.findViewById(R.id.textView24);
         text_purchased = (TextView)view.findViewById(R.id.textView23);
+        text_feedback = (TextView)view.findViewById(R.id.text_view_feedback);
 
         getImage();
         getCount();
@@ -133,6 +134,22 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), PurchasedTickets.class);
+                startActivity(intent);
+            }
+        });
+
+        text_change_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), UpdatePassword.class);
+                startActivity(intent);
+            }
+        });
+
+        text_feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Feedback.class);
                 startActivity(intent);
             }
         });

@@ -102,9 +102,15 @@
             android:name=".OrganizedEvents"
             android:parentActivityName=".HomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PurchasedTickets"
+        <activity
+            android:name=".PurchasedTickets"
             android:parentActivityName=".HomeActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UpdatePassword"
+            android:parentActivityName=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Feedback"></activity>
     </application>
 
 </manifest>
