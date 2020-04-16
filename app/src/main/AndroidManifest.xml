@@ -110,7 +110,17 @@
             android:name=".UpdatePassword"
             android:parentActivityName=".HomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Feedback"></activity>
+        <activity
+            android:name=".Feedback"
+            android:parentActivityName=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AboutUs"
+            android:parentActivityName=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Help"
+            android:parentActivityName=".HomeActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

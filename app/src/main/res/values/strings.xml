@@ -7,6 +7,13 @@
     <string name="rating_statement">We would like your feedback to improve our application.</string>
     <string name="rating_request">What is your opinion of this application?</string>
     <string name="feedback">Please leave your feedback below:</string>
+    <string name="about">Search Event Everywhere (SEE) for android offers user to search their favourite events of any location easily.
+    They can view the detail information about the event and can show interest towards the event. This app also helps user to purchase online ticket.
+    Payment of the online ticket can be made through Khalti. Users can also share their favourite events through any sharing apps.</string>
+    <string name="facebook"><a href="https://www.facebook.com/IAmUzwal">Ujwal Parajuli</a></string>
+    <string name="instagram"><a href="https://www.instagram.com/iamuzwal/">@iamuzwal</a></string>
+    <string name="twitter"><a href="https://twitter.com/__ujwal">@__ujwal</a></string>
+
 
     <string-array name="categories">
         <item>Conference</item>
