@@ -101,8 +101,10 @@ public class OrganizedEvents extends AppCompatActivity {
                             double cost_per_ticket = jsonResponse.getDouble("cost_per_ticket");
                             int total_tickets = jsonResponse.getInt("total_tickets");
                             String organizer_name = jsonResponse.getString("full_name");
+                            String created_on = jsonResponse.getString("created_on");
+                            String user_image = jsonResponse.getString("user_image");
 
-                            EventModel eventModel = new EventModel(event_id, organizer_id, total_people, total_tickets, event_name, event_city, venue, start_date, end_date, start_time, end_time, category, description, image, ticket_required, cost_per_ticket, organizer_name);
+                            EventModel eventModel = new EventModel(event_id, organizer_id, total_people, total_tickets, event_name, event_city, venue, start_date, end_date, start_time, end_time, category, description, image, ticket_required, cost_per_ticket, organizer_name, created_on, user_image);
                             eventModelArrayList.add(eventModel);
                             Collections.reverse(eventModelArrayList);
 

@@ -288,7 +288,7 @@ public class ProfileFragment extends Fragment {
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         int total_interested = jsonResponse.getInt("total_interested");
-                        int total_purchased = jsonResponse.getInt("total_interested");
+                        int total_purchased = jsonResponse.getInt("total_purchased");
                         int total_organized = jsonResponse.getInt("total_organized");
                         text_total_attended.setText(String.valueOf(total_interested));
                         text_total_organized.setText(String.valueOf(total_organized));

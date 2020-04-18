@@ -96,8 +96,10 @@ public class Report extends AppCompatActivity {
                             String address = jsonResponse.getString("address");
                             String image = jsonResponse.getString("image");
                             String interested_date = jsonResponse.getString("interested_date");
+                            String event_name = jsonResponse.getString("name");
+                            String event_image = jsonResponse.getString("event_image");
 
-                            InterestedModel interestedModel = new InterestedModel(full_name, email, phone, address, image, interested_date);
+                            InterestedModel interestedModel = new InterestedModel(full_name, email, phone, address, image, interested_date, event_name, event_image);
                             interestedModelArrayList.add(interestedModel);
                             Collections.reverse(interestedModelArrayList);
                         }
@@ -211,8 +213,10 @@ public class Report extends AppCompatActivity {
                             String quantity = jsonResponse.getString("quantity");
                             String amount = jsonResponse.getString("amount");
                             String ticket_no = jsonResponse.getString("ticket_no");
+                            String event_name = jsonResponse.getString("name");
+                            String event_image = jsonResponse.getString("event_image");
 
-                            PurchasedModel purchasedModel = new PurchasedModel(full_name, email, phone, address, image, ticket_no, quantity, amount, purchased_date);
+                            PurchasedModel purchasedModel = new PurchasedModel(full_name, email, phone, address, image, ticket_no, quantity, amount, purchased_date, event_name, event_image);
                             purchasedModelArrayList.add(purchasedModel);
                             Collections.reverse(purchasedModelArrayList);
                         }

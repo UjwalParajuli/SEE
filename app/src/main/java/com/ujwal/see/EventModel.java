@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class EventModel implements Serializable {
     int event_id, organizer_id, total_people, total_tickets;
-    String event_name, city, venue, start_date, end_date, start_time, end_time, event_category, event_description, event_image, ticket_required, organizer_name;
+    String event_name, city, venue, start_date, end_date, start_time, end_time, event_category, event_description, event_image, ticket_required, organizer_name, created_on, user_image;
     double cost_per_ticket;
 
     public int getEvent_id() {
@@ -143,7 +143,23 @@ public class EventModel implements Serializable {
         this.organizer_name = organizer_name;
     }
 
-    public EventModel(int event_id, int organizer_id, int total_people, int total_tickets, String event_name, String city, String venue, String start_date, String end_date, String start_time, String end_time, String event_category, String event_description, String event_image, String ticket_required, double cost_per_ticket, String organizer_name) {
+    public String getCreated_on() {
+        return created_on;
+    }
+
+    public void setCreated_on(String created_on) {
+        this.created_on = created_on;
+    }
+
+    public String getUser_image() {
+        return user_image;
+    }
+
+    public void setUser_image(String user_image) {
+        this.user_image = user_image;
+    }
+
+    public EventModel(int event_id, int organizer_id, int total_people, int total_tickets, String event_name, String city, String venue, String start_date, String end_date, String start_time, String end_time, String event_category, String event_description, String event_image, String ticket_required, double cost_per_ticket, String organizer_name, String created_on, String user_image) {
         this.event_id = event_id;
         this.organizer_id = organizer_id;
         this.total_people = total_people;
@@ -161,6 +177,8 @@ public class EventModel implements Serializable {
         this.ticket_required = ticket_required;
         this.cost_per_ticket = cost_per_ticket;
         this.organizer_name = organizer_name;
+        this.created_on = created_on;
+        this.user_image = user_image;
     }
 }
 

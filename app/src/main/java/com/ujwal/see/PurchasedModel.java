@@ -3,7 +3,7 @@ package com.ujwal.see;
 import java.io.Serializable;
 
 public class PurchasedModel implements Serializable {
-    String user_name, email, mobile, address, user_image, ticket_no, quantity, cost, purchased_date;
+    String user_name, email, mobile, address, user_image, ticket_no, quantity, cost, purchased_date, event_name, event_image;
 
     public String getUser_name() {
         return user_name;
@@ -77,8 +77,24 @@ public class PurchasedModel implements Serializable {
         this.purchased_date = purchased_date;
     }
 
+    public String getEvent_name() {
+        return event_name;
+    }
 
-    public PurchasedModel(String user_name, String email, String mobile, String address, String user_image, String ticket_no, String quantity, String cost, String purchased_date) {
+    public void setEvent_name(String event_name) {
+        this.event_name = event_name;
+    }
+
+    public String getEvent_image() {
+        return event_image;
+    }
+
+    public void setEvent_image(String event_image) {
+        this.event_image = event_image;
+    }
+
+
+    public PurchasedModel(String user_name, String email, String mobile, String address, String user_image, String ticket_no, String quantity, String cost, String purchased_date, String event_name, String event_image) {
         this.user_name = user_name;
         this.email = email;
         this.mobile = mobile;
@@ -88,5 +104,7 @@ public class PurchasedModel implements Serializable {
         this.quantity = quantity;
         this.cost = cost;
         this.purchased_date = purchased_date;
+        this.event_name = event_name;
+        this.event_image = event_image;
     }
 }

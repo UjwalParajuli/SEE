@@ -76,6 +76,8 @@ public class EditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        this.setTitle("Edit Profile");
+
         sharedPreferences = getSharedPreferences("LoginForm",MODE_PRIVATE);
         editorPreferences = sharedPreferences.edit();
         editorPreferences.apply();
