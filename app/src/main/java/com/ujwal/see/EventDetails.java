@@ -3,6 +3,8 @@ package com.ujwal.see;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.DialogInterface;
@@ -113,7 +115,10 @@ public class EventDetails extends AppCompatActivity {
         }
 
         if (sharedPreferences2.getInt("user_type", 0) == 4){
-            button_interested.setVisibility(View.GONE);
+            button_interested.setVisibility(View.VISIBLE);
+            button_report.setVisibility(View.GONE);
+            button_edit.setVisibility(View.GONE);
+            button_delete.setVisibility(View.GONE);
         }
 
         if (sharedPreferences2.getInt("user_id", 0) != eventModel.getOrganizer_id() && eventModel.getTicket_required().equals("Yes")){
@@ -396,77 +401,94 @@ public class EventDetails extends AppCompatActivity {
     }
 
     public void interested(View view) {
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-        String url = "https://ujwalparajuli.000webhostapp.com/android/interested.php";
-        final RequestQueue requestQueue = Volley.newRequestQueue(EventDetails.this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                if (response.trim().equals("error")) {
-                    Toast.makeText(EventDetails.this, "Could not added", Toast.LENGTH_SHORT).show();
-
-
+        if (sharedPreferences2.getInt("user_type", 0) == 4) {
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(EventDetails.this);
+            builder.setTitle("Info");
+            builder.setMessage("Please log in first");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
                 }
-                else {
-                    button_interested.setVisibility(View.GONE);
-                    button_not_interested.setVisibility(View.VISIBLE);
-                    try {
-                        JSONObject jsonResponse = new JSONObject(response);
+            });
+            android.app.AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+        else {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            String url = "https://ujwalparajuli.000webhostapp.com/android/interested.php";
+            final RequestQueue requestQueue = Volley.newRequestQueue(EventDetails.this);
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    if (response.trim().equals("error")) {
+                        Toast.makeText(EventDetails.this, "Could not added", Toast.LENGTH_SHORT).show();
 
-                        int total_people = jsonResponse.getInt("total_people");
-                        text_people.setText(String.valueOf(total_people) + " " + "people interested");
 
-                    }catch (JSONException e){
-                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        button_interested.setVisibility(View.GONE);
+                        button_not_interested.setVisibility(View.VISIBLE);
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+
+                            int total_people = jsonResponse.getInt("total_people");
+                            text_people.setText(String.valueOf(total_people) + " " + "people interested");
+
+                        }catch (JSONException e){
+                            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    if (error instanceof NetworkError) {
+                        //progressBarHome.setVisibility(View.GONE);
+                        //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                    } else if (error instanceof ServerError) {
+                        //progressBarHome.setVisibility(View.GONE);
+                        //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        Toast.makeText(EventDetails.this,"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                    } else if (error instanceof AuthFailureError) {
+                        //progressBarHome.setVisibility(View.GONE);
+                        //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                    } else if (error instanceof ParseError) {
+                        //progressBarHome.setVisibility(View.GONE);
+                        //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        Toast.makeText(EventDetails.this,"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
+                    } else if (error instanceof NoConnectionError) {
+                        //progressBarHome.setVisibility(View.GONE);
+                        //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
+                    } else if (error instanceof TimeoutError) {
+                        //progressBarHome.setVisibility(View.GONE);
+                        //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        Toast.makeText(EventDetails.this,"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("user_id", String.valueOf(sharedPreferences2.getInt("user_id", 0)));
+                    params.put("event_id", String.valueOf(eventModel.getEvent_id()));
+                    return params;
                 }
 
+            };
+            requestQueue.add(stringRequest);
+        }
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                if (error instanceof NetworkError) {
-                    //progressBarHome.setVisibility(View.GONE);
-                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
-                } else if (error instanceof ServerError) {
-                    //progressBarHome.setVisibility(View.GONE);
-                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    Toast.makeText(EventDetails.this,"The server could not be found. Please try again after some time!!",Toast.LENGTH_SHORT).show();
-                } else if (error instanceof AuthFailureError) {
-                    //progressBarHome.setVisibility(View.GONE);
-                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
-                } else if (error instanceof ParseError) {
-                    //progressBarHome.setVisibility(View.GONE);
-                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    Toast.makeText(EventDetails.this,"Parsing error! Please try again after some time!!",Toast.LENGTH_SHORT).show();
-                } else if (error instanceof NoConnectionError) {
-                    //progressBarHome.setVisibility(View.GONE);
-                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    Toast.makeText(EventDetails.this,"Cannot connect to Internet...Please check your connection!",Toast.LENGTH_SHORT).show();
-                } else if (error instanceof TimeoutError) {
-                    //progressBarHome.setVisibility(View.GONE);
-                    //getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                    Toast.makeText(EventDetails.this,"Connection TimeOut! Please check your internet connection.",Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("user_id", String.valueOf(sharedPreferences2.getInt("user_id", 0)));
-                params.put("event_id", String.valueOf(eventModel.getEvent_id()));
-                return params;
-            }
-
-        };
-        requestQueue.add(stringRequest);
 
     }
 
@@ -603,18 +625,10 @@ public class EventDetails extends AppCompatActivity {
     }
 
     public void purchaseTicket(View view) {
-        if (eventModel.getTotal_tickets() > 0){
-            Intent intent = new Intent(EventDetails.this, Checkout.class);
-            editorPreferences.putInt("event_id", eventModel.getEvent_id());
-            editorPreferences.putInt("total_tickets", eventModel.getTotal_tickets());
-            editorPreferences.putString("cost_per_ticket", String.valueOf(eventModel.getCost_per_ticket()));
-            editorPreferences.putString("event_name", eventModel.getEvent_name());
-            editorPreferences.apply();
-            startActivity(intent);
-        }
-        else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(EventDetails.this);
-            builder.setMessage("Sorry! All tickets are sold out.");
+        if (sharedPreferences2.getInt("user_type", 0) == 4) {
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(EventDetails.this);
+            builder.setTitle("Info");
+            builder.setMessage("Please log in first");
             builder.setCancelable(false);
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
@@ -622,9 +636,34 @@ public class EventDetails extends AppCompatActivity {
                     dialogInterface.cancel();
                 }
             });
-            AlertDialog alertDialog = builder.create();
+            android.app.AlertDialog alertDialog = builder.create();
             alertDialog.show();
         }
+        else {
+            if (eventModel.getTotal_tickets() > 0){
+                Intent intent = new Intent(EventDetails.this, Checkout.class);
+                editorPreferences.putInt("event_id", eventModel.getEvent_id());
+                editorPreferences.putInt("total_tickets", eventModel.getTotal_tickets());
+                editorPreferences.putString("cost_per_ticket", String.valueOf(eventModel.getCost_per_ticket()));
+                editorPreferences.putString("event_name", eventModel.getEvent_name());
+                editorPreferences.apply();
+                startActivity(intent);
+            }
+            else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EventDetails.this);
+                builder.setMessage("Sorry! All tickets are sold out.");
+                builder.setCancelable(false);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        }
+
 
 
     }

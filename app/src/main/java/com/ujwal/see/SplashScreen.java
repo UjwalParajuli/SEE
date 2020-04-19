@@ -3,6 +3,7 @@ package com.ujwal.see;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Handler;
@@ -15,12 +16,18 @@ import android.widget.Toast;
 public class SplashScreen extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 3000;
     Handler handler = new Handler();
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editorPreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        sharedPreferences = getSharedPreferences("LoginForm",MODE_PRIVATE);
+        editorPreferences = sharedPreferences.edit();
+        editorPreferences.apply();
 
         if (ActivityCompat.checkSelfPermission(SplashScreen.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(SplashScreen.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(SplashScreen.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
@@ -31,15 +38,20 @@ public class SplashScreen extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    if (sharedPreferences.getString("full_name", "").length() == 0){
+                        Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        Intent intent = new Intent(SplashScreen.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
                 }
             },SPLASH_TIME_OUT);
         }
-
-
-
 
     }
 

@@ -1,11 +1,14 @@
 package com.ujwal.see;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -74,6 +77,16 @@ public class NotificationFragment extends Fragment {
         editorPreferences = sharedPreferences.edit();
         editorPreferences.apply();
 
+//        try {
+//            interestedModelArrayList.clear();
+//            interestedModelArrayList2.clear();
+//            purchasedModelArrayList.clear();
+//            purchasedModelArrayList2.clear();
+//        }catch (Exception ex){
+//
+//        }
+
+
         sharedPreferences2 = getContext().getSharedPreferences("Event_Details", MODE_PRIVATE);
         editorPreferences2 = sharedPreferences2.edit();
         editorPreferences2.apply();
@@ -115,7 +128,24 @@ public class NotificationFragment extends Fragment {
             getEarlierPurchased();
 
         }
-
+        if (sharedPreferences.getInt("user_type", 0) == 4) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Info");
+            builder.setMessage("Please log in to see notifications.");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Fragment homeFragment = new HomeFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, homeFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
         return view;
     }
 
@@ -176,7 +206,6 @@ public class NotificationFragment extends Fragment {
 
                         if (eventModelArrayList.size() <= 0){
                             try {
-                                textView.setVisibility(View.GONE);
                                 recyclerView.setVisibility(View.GONE);
                             }catch (Exception ex){
 
@@ -184,6 +213,7 @@ public class NotificationFragment extends Fragment {
 
                         }
                         else {
+                            textView.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.VISIBLE);
                         }
 
@@ -201,8 +231,6 @@ public class NotificationFragment extends Fragment {
                                 startActivity(intent);
                             }
                         });
-
-
 
                     } catch (JSONException e) {
                         Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
@@ -302,7 +330,6 @@ public class NotificationFragment extends Fragment {
 
                         if (eventModelArrayList2.size() <= 0){
                             try {
-                                textView2.setVisibility(View.GONE);
                                 recyclerView2.setVisibility(View.GONE);
                             }catch (Exception ex){
 
@@ -310,11 +337,10 @@ public class NotificationFragment extends Fragment {
 
                         }
                         if (eventModelArrayList.size() <= 0 && eventModelArrayList2.size() <= 0){
-                            textView.setVisibility(View.GONE);
-                            textView2.setVisibility(View.GONE);
                             textView3.setVisibility(View.VISIBLE);
                         }
                         if (eventModelArrayList2.size() > 0){
+                            textView2.setVisibility(View.VISIBLE);
                             recyclerView2.setVisibility(View.VISIBLE);
                         }
 
@@ -424,6 +450,8 @@ public class NotificationFragment extends Fragment {
 
                         }
                         else {
+                            textView3.setVisibility(View.GONE);
+                            textView.setVisibility(View.VISIBLE);
                             recyclerView3.setVisibility(View.VISIBLE);
                         }
 
@@ -542,6 +570,8 @@ public class NotificationFragment extends Fragment {
                         }
 
                         else {
+                            textView3.setVisibility(View.GONE);
+                            textView2.setVisibility(View.VISIBLE);
                             recyclerView4.setVisibility(View.VISIBLE);
                         }
 
@@ -661,13 +691,13 @@ public class NotificationFragment extends Fragment {
                             }
 
                         }
-                        if (interestedModelArrayList.size() <= 0 && purchasedModelArrayList.size() <= 0){
-                            textView.setVisibility(View.GONE);
-                        }
 
-                        if (purchasedModelArrayList.size() > 0){
+                        else {
+                            textView3.setVisibility(View.GONE);
+                            textView.setVisibility(View.VISIBLE);
                             recyclerView5.setVisibility(View.VISIBLE);
                         }
+
 
                         recyclerView5.setAdapter(purchasedNotificationAdapter);
                         purchasedNotificationAdapter.notifyDataSetChanged();
@@ -785,21 +815,26 @@ public class NotificationFragment extends Fragment {
                             }
 
                         }
-                        if (interestedModelArrayList2.size() <= 0 && purchasedModelArrayList2.size() <= 0){
-                            textView2.setVisibility(View.GONE);
-                        }
-                        if (purchasedModelArrayList2.size() > 0){
-                            recyclerView6.setVisibility(View.VISIBLE);
-                        }
+//                        if (interestedModelArrayList2.size() <= 0 && purchasedModelArrayList2.size() <= 0){
+//                            textView2.setVisibility(View.GONE);
+//                        }
+
                         if (interestedModelArrayList.size() <= 0 && interestedModelArrayList2.size() <= 0 && purchasedModelArrayList.size() <=0 && purchasedModelArrayList2.size() <= 0){
-                            textView.setVisibility(View.GONE);
-                            textView2.setVisibility(View.GONE);
-                            recyclerView3.setVisibility(View.GONE);
-                            recyclerView4.setVisibility(View.GONE);
-                            recyclerView5.setVisibility(View.GONE);
-                            recyclerView6.setVisibility(View.GONE);
                             textView3.setVisibility(View.VISIBLE);
                         }
+
+                        if (purchasedModelArrayList2.size() > 0){
+                            textView3.setVisibility(View.GONE);
+                            textView2.setVisibility(View.VISIBLE);
+                            recyclerView6.setVisibility(View.VISIBLE);
+                        }
+
+
+//                        if (interestedModelArrayList.size() > 0 && interestedModelArrayList2.size() > 0 && purchasedModelArrayList.size() > 0 && purchasedModelArrayList2.size() > 0){
+//                            textView3.setVisibility(View.GONE);
+//                        }
+
+
 
 
 

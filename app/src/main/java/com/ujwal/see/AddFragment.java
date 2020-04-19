@@ -1,8 +1,10 @@
 package com.ujwal.see;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -321,6 +323,26 @@ public class AddFragment extends Fragment {
 
             }
         });
+
+        if (sharedPreferences.getInt("user_type", 0) == 3 || sharedPreferences.getInt("user_type", 0) == 4){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Info");
+            builder.setMessage("Sorry! This feature is for only event organizers. Please contact admin if you want to add your event.");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Fragment homeFragment = new HomeFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, homeFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
 
         return view;
     }

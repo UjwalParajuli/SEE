@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.view.LayoutInflater;
@@ -57,154 +58,177 @@ public class ProfileFragment extends Fragment {
         editorPreferences = sharedPreferences.edit();
         editorPreferences.apply();
 
-        profile_image = (CircleImageView)view.findViewById(R.id.profile_image);
-        text_user_name = (TextView)view.findViewById(R.id.text_view_user_name);
-        text_user_type = (TextView)view.findViewById(R.id.text_view_user_type);
-        text_total_attended = (TextView)view.findViewById(R.id.text_view_count_attended);
-        text_total_organized = (TextView)view.findViewById(R.id.text_view_organized);
-        text_total_tickets = (TextView)view.findViewById(R.id.text_view_tickets);
-        text_change_password = (TextView)view.findViewById(R.id.text_view_change_password);
-        text_about_us = (TextView)view.findViewById(R.id.text_view_about_us);
-        text_help = (TextView)view.findViewById(R.id.text_view_help);
-        text_logout = (TextView)view.findViewById(R.id.text_view_logout);
-        button_edit_profile = (Button)view.findViewById(R.id.button_edit_profile);
-        text_organized = (TextView)view.findViewById(R.id.textView27);
-        text_interested = (TextView)view.findViewById(R.id.textView24);
-        text_purchased = (TextView)view.findViewById(R.id.textView23);
-        text_feedback = (TextView)view.findViewById(R.id.text_view_feedback);
-
-        getImage();
-        getCount();
-        text_user_name.setText(sharedPreferences.getString("full_name", null));
-        if (sharedPreferences.getInt("user_type", 0) == 2){
-            text_user_type.setText("Event Organizer");
+        if (sharedPreferences.getInt("user_type", 0) == 4) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Info");
+            builder.setMessage("Please log in to see your profile.");
+            builder.setCancelable(false);
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Fragment homeFragment = new HomeFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, homeFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         }
-        else if(sharedPreferences.getInt("user_type", 0) == 3) {
-            text_user_type.setText("Customer");
+        else {
+            profile_image = (CircleImageView)view.findViewById(R.id.profile_image);
+            text_user_name = (TextView)view.findViewById(R.id.text_view_user_name);
+            text_user_type = (TextView)view.findViewById(R.id.text_view_user_type);
+            text_total_attended = (TextView)view.findViewById(R.id.text_view_count_attended);
+            text_total_organized = (TextView)view.findViewById(R.id.text_view_organized);
+            text_total_tickets = (TextView)view.findViewById(R.id.text_view_tickets);
+            text_change_password = (TextView)view.findViewById(R.id.text_view_change_password);
+            text_about_us = (TextView)view.findViewById(R.id.text_view_about_us);
+            text_help = (TextView)view.findViewById(R.id.text_view_help);
+            text_logout = (TextView)view.findViewById(R.id.text_view_logout);
+            button_edit_profile = (Button)view.findViewById(R.id.button_edit_profile);
+            text_organized = (TextView)view.findViewById(R.id.textView27);
+            text_interested = (TextView)view.findViewById(R.id.textView24);
+            text_purchased = (TextView)view.findViewById(R.id.textView23);
+            text_feedback = (TextView)view.findViewById(R.id.text_view_feedback);
+
+            getImage();
+            getCount();
+            text_user_name.setText(sharedPreferences.getString("full_name", null));
+            if (sharedPreferences.getInt("user_type", 0) == 2){
+                text_user_type.setText("Event Organizer");
+            }
+            else if(sharedPreferences.getInt("user_type", 0) == 3) {
+                text_user_type.setText("Customer");
+            }
+
+            button_edit_profile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), EditProfile.class);
+                    startActivity(intent);
+
+                }
+            });
+
+            text_total_attended.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), InterestedEvents.class);
+                    startActivity(intent);
+                }
+            });
+
+            text_total_organized.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), OrganizedEvents.class);
+                    startActivity(intent);
+                }
+            });
+
+            text_total_tickets.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), PurchasedTickets.class);
+                    startActivity(intent);
+                }
+            });
+
+            text_organized.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), OrganizedEvents.class);
+                    startActivity(intent);
+                }
+            });
+
+            text_interested.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), InterestedEvents.class);
+                    startActivity(intent);
+                }
+            });
+
+            text_purchased.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), PurchasedTickets.class);
+                    startActivity(intent);
+                }
+            });
+
+            text_change_password.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), UpdatePassword.class);
+                    startActivity(intent);
+                }
+            });
+
+            text_feedback.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), Feedback.class);
+                    startActivity(intent);
+                }
+            });
+
+            text_about_us.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), AboutUs.class);
+                    startActivity(intent);
+                }
+            });
+
+            text_help.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), Help.class);
+                    startActivity(intent);
+                }
+            });
+
+            text_logout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle("Logout?");
+                    builder.setMessage("Are you sure want to logout?");
+                    builder.setCancelable(false);
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            getActivity().finish();
+                            editorPreferences.clear();
+                            editorPreferences.putString("full_name", "");
+                            editorPreferences.commit();
+                            editorPreferences.apply();
+                            Intent intent = new Intent(getContext(), LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
+
+
+                }
+            });
+
+
+
+
         }
-
-        button_edit_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), EditProfile.class);
-                startActivity(intent);
-
-            }
-        });
-
-        text_total_attended.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), InterestedEvents.class);
-                startActivity(intent);
-            }
-        });
-
-        text_total_organized.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), OrganizedEvents.class);
-                startActivity(intent);
-            }
-        });
-
-        text_total_tickets.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PurchasedTickets.class);
-                startActivity(intent);
-            }
-        });
-
-        text_organized.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), OrganizedEvents.class);
-                startActivity(intent);
-            }
-        });
-
-        text_interested.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), InterestedEvents.class);
-                startActivity(intent);
-            }
-        });
-
-        text_purchased.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), PurchasedTickets.class);
-                startActivity(intent);
-            }
-        });
-
-        text_change_password.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), UpdatePassword.class);
-                startActivity(intent);
-            }
-        });
-
-        text_feedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Feedback.class);
-                startActivity(intent);
-            }
-        });
-
-        text_about_us.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), AboutUs.class);
-                startActivity(intent);
-            }
-        });
-
-        text_help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Help.class);
-                startActivity(intent);
-            }
-        });
-
-        text_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Logout?");
-                builder.setMessage("Are you sure want to logout?");
-                builder.setCancelable(false);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        getActivity().finish();
-                        editorPreferences.clear();
-                        editorPreferences.commit();
-                        editorPreferences.apply();
-                        Intent intent = new Intent(getContext(), LoginActivity.class);
-                        startActivity(intent);
-                    }
-                });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-
-
-
-            }
-        });
-
-
 
         return view;
     }
