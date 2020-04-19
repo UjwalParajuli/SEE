@@ -11,7 +11,7 @@ if (!$conn) {
 $event_id = (int)$_POST['event_id'];
 
 $data = array();
-$sql = "select user.full_name, user.email, user.phone, user.address, user.image, interested.interested_date from user inner join interested on user.id = interested.user_id where interested.event_id = $event_id ";
+$sql = "select user.full_name, user.email, user.phone, user.address, user.image, interested.interested_date, event_details.name, event_details.image as event_image from user inner join interested on user.id = interested.user_id inner join event_details on event_details.id = interested.event_id where interested.event_id = $event_id ";
 
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) < 0) {

@@ -8,6 +8,9 @@ if (!$conn) {
 	die("Connection failed!");
 }
 
+date_default_timezone_set("Asia/Kathmandu");
+
+$created_on = date("Y-m-d H:i:s");
 $organizer_id = (int)$_POST['user_id'];
 $image = $_POST["image"];
 $event_name = $_POST['event_name'];
@@ -31,7 +34,7 @@ $data = base64_decode($image);
 $file = $upload_path.uniqid(). '.jpg';
 $success = file_put_contents($file, $data);
 
-$image_url = 'https://ujwalparajuli.000webhostapp.com/android/'.$file;   
+$image_url = 'https://ujwalparajuli.000webhostapp.com/'.$file;   
 
 $sql = "select * from event_details where organizer_id = '$organizer_id' and name = '$event_name' and city = '$city_name' and venue = '$venue_name' and start_date = '$new_start_date' and start_time = '$start_time' and end_date = '$new_end_date' and end_time = '$end_time' and category = '$category' and description = '$description'";
 
@@ -42,7 +45,7 @@ if (mysqli_num_rows($result) > 0) {
 
 else{
 	if ($success) {
-		$qry = "insert into event_details (organizer_id, name, city, venue, start_date, start_time, end_date, end_time, category, description, image) values ($organizer_id, '$event_name', '$city_name', '$venue_name', '$new_start_date', '$start_time', '$new_end_date', '$end_time', '$category', '$description', '$image_url')";
+		$qry = "insert into event_details (organizer_id, name, city, venue, start_date, start_time, end_date, end_time, category, description, image, created_on) values ($organizer_id, '$event_name', '$city_name', '$venue_name', '$new_start_date', '$start_time', '$new_end_date', '$end_time', '$category', '$description', '$image_url', '$created_on')";
 		if (mysqli_query($conn, $qry)) {
 			$last_id = mysqli_insert_id($conn);
 			$qry2 = "insert into ticket (event_id, ticket_required, cost_per_ticket, total_tickets) values ($last_id, '$ticket_required', $cost_per_ticket, $total_tickets)";
@@ -54,11 +57,11 @@ else{
 			}
 		}
 		else{
-			echo "";
+			echo "eventDetailsError";
 		}
 	}
 	
 	else {
-		echo "eventDetailsError";
+		echo "error2";
 	}
 }

@@ -12,7 +12,7 @@ $d=strtotime("today");
 $today_date = date('Y-m-d', $d);
 
 $data = array();
-$sql = "select event_details.id, event_details.organizer_id, event_details.name, event_details.city, event_details.venue, event_details.start_date, event_details.start_time, event_details.end_date, event_details.end_time, event_details.category, event_details.description, event_details.image, event_details.total_people, ticket.ticket_required, ticket.cost_per_ticket, ticket.total_tickets, user.full_name from event_details inner join ticket on event_details.id = ticket.event_id inner join user on event_details.organizer_id = user.id where event_details.start_date < '$today_date' and event_details.end_date >= '$today_date'";
+$sql = "select event_details.id, user.image as user_image, event_details.created_on, event_details.organizer_id, event_details.name, event_details.city, event_details.venue, event_details.start_date, event_details.start_time, event_details.end_date, event_details.end_time, event_details.category, event_details.description, event_details.image, event_details.total_people, ticket.ticket_required, ticket.cost_per_ticket, ticket.total_tickets, user.full_name from event_details inner join ticket on event_details.id = ticket.event_id inner join user on event_details.organizer_id = user.id where event_details.start_date < '$today_date' and event_details.end_date >= '$today_date'";
 
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) < 0) {

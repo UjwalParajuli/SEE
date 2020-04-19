@@ -23,7 +23,7 @@ if (mysqli_num_rows($result) < 1) {
 }
 else {
 	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-	$qry = "insert into user (full_name, email, password, phone, address) values ('$full_name' , '$email', '$hashed_password', '$phone', '$address')";
+	$qry = "insert into user (full_name, email, password, phone, address, image) values ('$full_name' , '$email', '$hashed_password', '$phone', '$address', 'https://ujwalparajuli.000webhostapp.com/android/uploads/user/dummy_user.jpg')";
 			
 	$result = mysqli_query($conn, $qry);
 	if(!$result){
