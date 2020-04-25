@@ -19,13 +19,10 @@ if (mysqli_num_rows($result) < 1) {
 }
 
 else{
-	$result = mysqli_query($conn, $qry);
-	if(!$result){
-		echo "dbError";
-	}
-	else{
+   
 		echo "success";
-	}
+	
 }
+
 
 ?>

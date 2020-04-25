@@ -10,8 +10,8 @@ if (!$conn) {
 
 $user_id = (int)$_POST['user_id'];
 $event_id = (int)$_POST['event_id'];
-$d=strtotime("today");
-$today_date = date('Y-m-d', $d);
+date_default_timezone_set("Asia/Kathmandu");
+$today_date = date("Y-m-d H:i:s");
 $data = array();
 
 $sql = "insert into interested (user_id, event_id, interested_date) values ('$user_id', '$event_id', '$today_date') ";
