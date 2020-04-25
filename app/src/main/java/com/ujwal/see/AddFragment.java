@@ -447,19 +447,19 @@ public class AddFragment extends Fragment {
     public void addEvent(){
         final String images, event_name, city_name, venue_name, start_date, end_date, start_time, end_time, category, description, ticket_required, cost_per_ticket, total_tickets;
         int radioId = radio_group.getCheckedRadioButtonId();
-        String image1;
+        //String image1;
         radio_button = getActivity().findViewById(radioId);
         boolean error = false;
         String url = "https://ujwalparajuli.000webhostapp.com/android/addEvent.php";
 
-        try {
-            int check = bitmap.getWidth();
-            image1 = getStringImage(bitmap);
-        }catch (Exception ex){
-            image1 = sharedPreferences.getString("image", null);
-        }
+//        try {
+//            int check = bitmap.getWidth();
+//            image1 = getStringImage(bitmap);
+//        }catch (Exception ex){
+//            image1 = sharedPreferences.getString("image", null);
+//        }
 
-        images = image1;
+        images = getStringImage(bitmap);
 
         event_name = edit_text_event_name.getText().toString().trim();
         city_name = edit_text_city.getText().toString().trim();
