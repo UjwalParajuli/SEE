@@ -26,9 +26,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/open_sans_bold"
+                android:fontFamily="@font/open_sans_semi_bold"
                 android:text="Event Name"
-                android:textColor="@color/ticket_heading"
+                android:textColor="@color/detail_email"
                 android:textSize="16sp"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -77,9 +77,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/open_sans_bold"
+                android:fontFamily="@font/open_sans_semi_bold"
                 android:text="Ticket Number"
-                android:textColor="@color/ticket_heading"
+                android:textColor="@color/detail_email"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider_ticket" />
@@ -105,9 +105,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/open_sans_bold"
+                android:fontFamily="@font/open_sans_semi_bold"
                 android:text="Name"
-                android:textColor="@color/ticket_heading"
+                android:textColor="@color/detail_email"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_ticket_number" />
@@ -134,9 +134,9 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Total Purchased Ticket"
-                android:textColor="@color/ticket_heading"
+                android:textColor="@color/detail_email"
                 android:textSize="16sp"
-                android:fontFamily="@font/open_sans_bold"
+                android:fontFamily="@font/open_sans_semi_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_ticket_user_name" />
 
@@ -162,9 +162,9 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Purchased Date"
-                android:textColor="@color/ticket_heading"
+                android:textColor="@color/detail_email"
                 android:textSize="16sp"
-                android:fontFamily="@font/open_sans_bold"
+                android:fontFamily="@font/open_sans_semi_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_ticket_quantity" />
 
@@ -190,9 +190,9 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
                 android:text="Total Amount"
-                android:textColor="@color/ticket_heading"
+                android:textColor="@color/detail_email"
                 android:textSize="16sp"
-                android:fontFamily="@font/open_sans_bold"
+                android:fontFamily="@font/open_sans_semi_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_ticket_purchased_date" />
 

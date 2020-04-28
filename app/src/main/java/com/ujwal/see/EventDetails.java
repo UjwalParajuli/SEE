@@ -164,8 +164,14 @@ public class EventDetails extends AppCompatActivity {
         text_people.setText(String.valueOf(eventModel.getTotal_people() + " " + "people interested"));
         text_description.setText(eventModel.getEvent_description());
         text_ticket_required.setText("Ticket Required:" + " " + eventModel.getTicket_required());
-        text_available_tickets.setText("Available Tickets:" + " " + String.valueOf(eventModel.getTotal_tickets()));
-        text_cost_of_ticket.setText("Cost Per Ticket:" + " " + String.valueOf(eventModel.getCost_per_ticket()));
+        if (eventModel.getTicket_required().equals("Yes")){
+            text_available_tickets.setText("Available Tickets:" + " " + String.valueOf(eventModel.getTotal_tickets()));
+            text_cost_of_ticket.setText("Cost Per Ticket (Rs.) :" + " " + String.valueOf(eventModel.getCost_per_ticket()));
+        }
+        else {
+            text_available_tickets.setVisibility(View.GONE);
+            text_cost_of_ticket.setVisibility(View.GONE);
+        }
         text_organizer.setText(eventModel.getOrganizer_name());
 
     }

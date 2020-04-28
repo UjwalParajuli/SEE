@@ -21,8 +21,8 @@
             android:layout_marginTop="8dp"
             android:text="Interested Peoples"
             android:paddingLeft="15dp"
-            android:textSize="18sp"
-            android:textColor="@color/colorBackgroundSplash"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
             android:fontFamily="@font/open_sans_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="No one is interested in your event"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/detail_email"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -79,8 +79,8 @@
             android:fontFamily="@font/open_sans_bold"
             android:paddingLeft="15dp"
             android:text="Tickets Purchased"
-            android:textColor="@color/colorBackgroundSplash"
-            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linear_layout_interested" />
 
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="No one has purchased ticket"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/detail_email"
                 android:textSize="12sp"
                 />
 

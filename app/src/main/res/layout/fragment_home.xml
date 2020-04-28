@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="No any events for today"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/detail_email"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="No any upcoming events"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/detail_email"
                 android:textSize="12sp"
                 />
 
@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="No any events nearby you"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/detail_email"
                 android:textSize="12sp"
                  />
 
@@ -234,7 +234,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans_regular"
                 android:text="No any ongoing events"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/detail_email"
                 android:textSize="12sp"
                 />
 

@@ -176,7 +176,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
             android:text="Choose Category: "
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/detail_email"
             android:textSize="14sp"
             app:fontFamily="@font/open_sans_regular"
             app:layout_constraintStart_toStartOf="parent"
@@ -204,7 +204,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
             android:text="Ticket Required: "
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/detail_email"
             android:textSize="14sp"
             app:fontFamily="@font/open_sans_regular"
             app:layout_constraintStart_toStartOf="parent"
@@ -226,7 +226,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yes"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/detail_email"
                 android:textSize="14sp"
                 app:fontFamily="@font/open_sans_regular" />
 
@@ -236,7 +236,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="No"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/detail_email"
                 android:textSize="14sp"
                 app:fontFamily="@font/open_sans_regular" />
         </RadioGroup>

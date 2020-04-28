@@ -102,6 +102,9 @@ public class ProfileFragment extends Fragment {
             else if(sharedPreferences.getInt("user_type", 0) == 3) {
                 text_user_type.setText("Customer");
             }
+            else if (sharedPreferences.getInt("user_type", 0) == 1){
+                text_user_type.setText("Admin");
+            }
 
             button_edit_profile.setOnClickListener(new View.OnClickListener() {
                 @Override

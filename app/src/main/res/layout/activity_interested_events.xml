@@ -44,7 +44,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans_regular"
         android:text="You haven't shown interest on any events."
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/detail_email"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
