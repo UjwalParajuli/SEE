@@ -55,6 +55,7 @@ public class UpdatePassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_password);
+        this.setTitle("Update Password");
 
         sharedPreferences = getSharedPreferences("LoginForm",MODE_PRIVATE);
         editorPreferences = sharedPreferences.edit();

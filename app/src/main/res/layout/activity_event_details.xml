@@ -92,32 +92,38 @@
                 app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
                 <TextView
-                android:id="@+id/text_venue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:drawableLeft="@drawable/ic_action_location_brown"
-                android:drawablePadding="10dp"
-                android:fontFamily="@font/open_sans_semi_bold"
-                android:text="Informatics College"
-                android:textColor="@color/rcViewText2"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_date" />
+                    android:id="@+id/text_venue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:drawableLeft="@drawable/ic_action_location_brown"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/open_sans_semi_bold"
+                    android:text="Informatics College"
+                    android:textColor="@color/rcViewText2"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/button_map"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_date" />
 
                 <TextView
-                android:id="@+id/text_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="34dp"
-                android:layout_marginLeft="34dp"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/open_sans_regular"
-                android:text="Matepani-12, Pokhara"
-                android:textColor="@color/rcViewText2"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_venue" />
+                    android:id="@+id/text_city"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginLeft="34dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:fontFamily="@font/open_sans_regular"
+                    android:text="Matepani-12, Pokhara"
+                    android:textColor="@color/rcViewText2"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/button_map"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_venue" />
 
                 <TextView
                 android:id="@+id/text_people"
@@ -445,6 +451,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/button_edit" />
+
+                <Button
+                    android:id="@+id/button_map"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/white"
+                    android:text="View on Map"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="9sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_date" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

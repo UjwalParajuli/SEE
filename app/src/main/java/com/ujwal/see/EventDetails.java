@@ -60,7 +60,7 @@ public class EventDetails extends AppCompatActivity {
     EventModel eventModel;
     ImageView image_full;
     TextView text_title, text_date, text_venue, text_city, text_people, text_description, text_ticket_required, text_available_tickets, text_cost_of_ticket, text_organizer;
-    Button button_interested, button_not_interested, button_purchase_ticket, button_share, button_edit, button_delete, button_report;
+    Button button_interested, button_not_interested, button_purchase_ticket, button_share, button_edit, button_delete, button_report, button_map;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editorPreferences;
     SharedPreferences sharedPreferences2;
@@ -100,6 +100,7 @@ public class EventDetails extends AppCompatActivity {
         button_delete = (Button) findViewById(R.id.button_delete);
         button_report = (Button) findViewById(R.id.button_view_report);
         button_purchase_ticket = (Button)findViewById(R.id.button_purchase_ticket);
+        button_map = (Button)findViewById(R.id.button_map);
 
         bundle = getIntent().getExtras();
         eventModel = (EventModel) bundle.getSerializable("event_details");
@@ -127,6 +128,13 @@ public class EventDetails extends AppCompatActivity {
 
         getData();
         getEmail();
+
+        button_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMap();
+            }
+        });
 
     }
 
@@ -681,5 +689,12 @@ public class EventDetails extends AppCompatActivity {
         editorPreferences.apply();
         startActivity(intent);
 
+    }
+
+    public void showMap(){
+        String strUri = "http://maps.google.co.in/maps?q=" + eventModel.getVenue() + "," + eventModel.getCity();
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
+        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+        startActivity(intent);
     }
 }
